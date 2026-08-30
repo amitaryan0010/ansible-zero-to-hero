@@ -78,7 +78,7 @@
             Large infrastructure
 
 🔹 For Static Inventory, Ansible supports the tree structure as well, where we can create a parent directory and then sub directories according to environemnt or your use case and we can organize these.
-        # mkdir -pv master_inventiry/{dev,qa,prod}
+        # mkdir -pv master_inventory/{dev,qa,prod}
         # tree -F master_inventiry
         master_inventory
         ├── dev
