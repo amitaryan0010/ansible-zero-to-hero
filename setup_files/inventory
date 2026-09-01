@@ -1,5 +1,18 @@
 localhost
+server1.path4cloud.com
 
-[target_node]
-docker ansible_host=192.168.139.9
-#centos ansible_host=192.168.139.15
+[web]   
+server2.path4cloud.com
+server3.path4cloud.com
+
+[db]
+db1.path4cloud.com
+db2.path4cloud.com
+
+[app]    
+app[1:5].path4cloud.com
+
+[test]    
+192.168.10.[21:30]
+
+test1.path4cloud.com 

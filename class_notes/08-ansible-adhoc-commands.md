@@ -6,7 +6,7 @@
     Example:
         # ansible all -m ping
         # ansible all -m dnf -a "name=httpd state=present" -b
-        # ansible all -m command -a "uptime" (command module is a defulat module, it can work wihout -m)
+        # ansible all -m command -a "uptime" (command module is a default module, it can work wihout -m command)
         # ansible all -m copy -a "src=file.txt dest=/tmp/file.txt"
         # ansible all -m user -a "name=devops state=present" -b
 
@@ -17,6 +17,7 @@
     | `-u`   | Remote user         |
     | `-b`   | Become (sudo)       |
     | `-k`   | Ask SSH password    |
+    | `-K`   | Ask sudo password   |
     | `-o`   | One-line output     |
     | `-f`   | Forks (parallelism) |
 
