@@ -1,0 +1,37 @@
+---
+- name: Playbook Demonstrating Non-Idempotence Nature
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: Create a file with a timestamp
+      copy:
+        content: "This file was created at {{ ansible_date_time.iso8601 }}\n"
+        dest: /tmp/non_idempotent_file.txt
+
+    - name: Simply copy content without block indicators
+      copy:
+        content: "I am simple content\n"
+        dest: /tmp/simple.txt
+
+    - name: Copy content with | character (Preserves Line Breaks)
+      copy:
+        content: |
+          I am at line1
+          Now, starting a new line from here
+          and more....
+          and at last, one more.
+        dest: /tmp/pipe.txt
+
+    - name: Copy content with > character (Folds to Single Line)
+      copy:
+        content: >
+          All texts in one line only.
+          But it looks like in a multiple line.
+          When we see this, it is a single line only.
+        dest: /tmp/oneline.txt
+
+    - name: Run a command that is non-idempotent
+      command: echo "This command runs every time the playbook is executed" > /tmp/command_ran.txt
+
+    - name: Run a shell command that is non-idempotent
+      shell: echo "This shell command will run every time" > /tmp/output.txt

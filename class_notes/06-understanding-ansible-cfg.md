@@ -88,7 +88,7 @@ become_ask_pass = false
     - Disable host_key_checking for lab (not prod)
     - Use roles_path for modular design
     - Use log_path for debugging
-    - boolen values can be accpeted as TRUE/true/True/1/yes OR FALSE/false/False/0/no, but to keep consistency follow one value like we are keeping it as `true` or `false`
+    - boolen values can be accpeted as true/True/1/yes/Yes OR false/False/0/no/No, but to keep consistency follow one value like we are keeping it as `true` or `false`
 
 # ansible-config command 
 ```
