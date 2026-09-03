@@ -116,7 +116,7 @@
         ├── playbooks/
         └── docs/
 ```
-- Ansible-Galaxy hosts collections like: amazon.aws, community.general, kubernetes.core
+- Ansible Galaxy hosts collections like: amazon.aws, community.general, kubernetes.core
 - Ansible Automation Hub hosts verified and certified collections from Redhat and it's partner.
 
 - Ansible (Redhat) recommends FQCN = Fully Qualified Collection Name
