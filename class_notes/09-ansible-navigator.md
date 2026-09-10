@@ -190,6 +190,7 @@ or
     Why It's failed:
         - Your EE environemnt does not contain this collection since EE environemnt is an isolated container and it does not use system-installed collections
     ```
+    
     ![alt text](../images/an5.png)
 
 - We can fix this issue:
@@ -204,7 +205,7 @@ or
                 - if it is already installed at default path then use --force.
                 ```
 
-                ![alt text](../images/an6.png)
+        ![alt text](../images/an6.png)
 
             - If we are trying to install at default path:
                 ```
@@ -213,7 +214,7 @@ or
                 (Use --force, if it is already installed at "/usr/share/ansible/collections/ansible_collections/" or corrupted)
                 ```
 
-                ![alt text](../images/an7.png)
+        ![alt text](../images/an7.png)
 
         - Post installation locally, then we can mount the same inside the container while running the run commnad:
 
@@ -223,9 +224,9 @@ or
             (usually, it is not a good idea, it might raise an another issue like python dependecny like here)
             ```
 
-            ![alt text](../images/an8.png)
+        ![alt text](../images/an8.png)
 
-            ![alt text](../images/an9.png)
+        ![alt text](../images/an9.png)
 
             - Additional option with `--container-options`
                 -  The Volume Mount (-v=...)
@@ -249,9 +250,9 @@ or
         
                 # ansible-navigator exec --eei my-ee:latest -- ansible-galaxy collection list
 
-            ![alt text](../images/an10.png)
+        ![alt text](../images/an10.png)
 
-            ![alt text](../images/an11.png)
+        ![alt text](../images/an11.png)
         
     - Fix 4:
         - Create custom EE image with missing library or dependency. Follow below steps to create a custom EE:
