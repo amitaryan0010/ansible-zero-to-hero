@@ -142,8 +142,9 @@ We camn incporporate the hosts lists with new modern command ansible-inventory w
   - Auto-scaling systems
   - Large infrastructure
 
-```
+
 🔹 For Static Inventory, Ansible supports the tree structure as well, where we can create a parent directory and then sub directories according to environemnt or your use case and we can organize these.
+
         # mkdir -pv master_inventory/{dev,qa,prod}
         # tree -F master_inventiry
         master_inventory
@@ -151,7 +152,8 @@ We camn incporporate the hosts lists with new modern command ansible-inventory w
         ├── prod
         └── qa
 
-    - Now, we can create a subfile under these directories, might be according to platforms:
+- Now, we can create a subfile under these directories, might be according to platforms:
+
         # touch master_inventory/dev/{linux,windows,network}
         # touch master_inventory/qa/{web,db}
         # touch master_inventory/prod/{hosts}
@@ -169,6 +171,7 @@ We camn incporporate the hosts lists with new modern command ansible-inventory w
 
 
 🔹 Further, we can organize the hosts inside of inventory file into groups, and nested group (parent & child):
+
     Example:
         [linux]                         <----------- group_name which has servers list
         server1.path4cloud.com
@@ -206,13 +209,14 @@ We camn incporporate the hosts lists with new modern command ansible-inventory w
 
 
 🔹 Lets reference these different directories and subfiles for inventory with ansible-navigator command:
+
     # ansible-navigator inventory -i <path> -m stdout --list (in json format)
 
 explore other inventory options:
 
     # ansible-navigator inventory -i <path> -m stdout --graph (will show all hosts and groups)
     # ansible-navigator inventory -i <path> -m stdout --graph  <group_name> (will show the hosts from specified group)
-    # ansible-navigator inventory -i <path> -m stdout --host <hostname> (will list the all variables specified for this host)
+    # ansible-navigator inventory -i <path> -m stdout --host <hostname> (will list the all variables specified for this host inside inventory)
+    (**Variable can be associated with inventory host or inventory group)
     # ansible-navigator inventory -i <path> -m stdout --graph ungrouped (will show the hosts that are not part of any group)
     # ansible-navigator inventory -i <path>  (will show the output interactively)
-```

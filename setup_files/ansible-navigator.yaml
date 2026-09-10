@@ -5,7 +5,7 @@ ansible-navigator:
       entries:
         - /home/ansibleuser/inventory
   execution-environment:
-    image: registry.redhat.io/ansible-automation-platform-26/ee-supported-rhel9:latest
+    image: registry.redhat.io/ansible-automation-platform-27/ee-supported-rhel9
     pull:
       policy: missing
   playbook-artifact:

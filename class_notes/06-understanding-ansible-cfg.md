@@ -18,10 +18,10 @@ ansible.cfg is the main configuration file for Ansible. It controls how Ansible 
 
 ### Scope of ansible.cfg (VERY IMPORTANT)
 - Ansible follows a priority order when loading config:
-  - 🥇 1. Environment variable (ANSIBLE_CONFIG=/path/to/ansible.cfg)
-  - 🥈 2. Current directory (./ansible.cfg, where the playbook will be executed)
-  - 🥉 3. User home directory (~/.ansible.cfg, who run the playbook)
-  - 🏁 4. System-wide config (/etc/ansible/ansible.cfg)
+  1. Environment variable (ANSIBLE_CONFIG=/path/to/ansible.cfg)
+  2. Current directory (./ansible.cfg, where the playbook will be executed)
+  3. User home directory (~/.ansible.cfg, who run the playbook)
+  4. System-wide config (/etc/ansible/ansible.cfg)
 
 #### DEMO
 - switch to a user (root) or any other user which does not have ansible.cfg file in his home directory then it will refer to a global config file.
@@ -137,4 +137,38 @@ become = true
 become_method = sudo
 become_user = root
 become_ask_pass = false
+```
+
+## ansible-navigator.yaml file
+- The ansible-navigator.yaml (or .yml) file is the central configuration file used to define default behaviors for Ansible Navigator.
+- Instead of typing long command-line flags every time you run a command, this settings file lets you pre-configure your execution environment (EE), logging levels, UI modes, and artifact storage
+
+#### File Location & Precedence
+[Ansible Navigator](https://docs.ansible.com/projects/navigator/) looks for a configuration file in the following order of priority (first match wins): 
+  1. ANSIBLE_NAVIGATOR_CONFIG: An environment variable pointing to a specific file path.
+  2. ./ansible-navigator.yaml: Locally inside your current project directory. (NOTE: no dot in the file name)
+  3. ~/.ansible-navigator.yaml: Globally in your user's home directory
+
+  ** Note: You can only have one settings file per directory (either .json, .yml, or .yaml). Mixing extensions in the same folder will trigger an error. (NOTE: note the dot in the file name)
+
+#### Example file:
+[ansible-navigator settings](https://docs.ansible.com/projects/navigator/settings/)
+```
+$ cat ansible-navigator.yaml
+---
+ansible-navigator:
+  ansible:
+    inventory:
+      entries:
+        - /home/ansibleuser/inventory
+  execution-environment:
+    image: registry.redhat.io/ansible-automation-platform-26/ee-supported-rhel9:latest
+    pull:
+      policy: missing
+  playbook-artifact:
+    enable: false
+  mode: stdout
+  logging:
+    level: info
+    file: /dev/null
 ```

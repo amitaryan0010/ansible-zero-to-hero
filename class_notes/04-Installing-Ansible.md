@@ -245,7 +245,7 @@ Ansible is agentless, meaning you do not need to install ansible-core or any spe
 
 ### Install Ansible to container
 - Instead of installing Ansible content manually, you can simply build an execution environment container image or use one of the available community images as your control node.
-- [Execution Environment](https://docs.ansible.com/projects/ansible/latest/getting_started_ee/index.html#getting-started-ee-index)
+- [Execution Environment](https://docs.ansible.com/projects/ansible/latest/getting_started_ee/index.html#getting-started-ee-index) via community image:
     ```
     setting up the environment
     # dnf install -y podman python3 python3-pip
@@ -254,7 +254,7 @@ Ansible is agentless, meaning you do not need to install ansible-core or any spe
     # ansible-navigator --version
     ansible-navigator 24.2.0
 
-    Running Ansible with the community EE image
+    Running Ansible with the community EE image
     # ansible-navigator collections --execution-environment-image ghcr.io/ansible-community/community-ee-base:latest
 
     # ansible-navigator exec "ansible localhost -m setup | grep -i ansible_python" --execution-environment-image ghcr.io/ansible-community/community-ee-minimal:latest --mode stdout --pull-policy missing
@@ -264,6 +264,100 @@ Ansible is agentless, meaning you do not need to install ansible-core or any spe
 
     ```
     ![alt text](../images/install8.png)
+
+- [Execution Environment](https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/) from Redhat Repos
+    ```
+    # subscription-manager repos --enable ansible-automation-platform-2.7-for-rhel-9-x86_64-rpms
+
+    # yum install ansible-navigator
+
+    Login to registry.redhat.io to access the image
+    # podman login registry.redhat.io
+    Username: path4cloud
+    Password:
+    Login Succeeded!
+    ```
+
+    ![alt text](../images/install9.png)
+
+    - By default, all registry are mentioned in `/etc/containers/registries.conf` file, we can inspect this file:
+    ```
+    # podman info --format '{{.Registries}}'
+    map[search:[registry.access.redhat.com registry.redhat.io docker.io]]
+
+    # cat /etc/containers/registries.conf | grep -i "unqualified-search-registries"
+    # unqualified-search-registries = ["example.com"]
+    unqualified-search-registries = ["registry.access.redhat.com", "registry.redhat.io", "docker.io"]
+
+    (If required, we can add registries to this Search List)
+    ```
+    - Configure Individual Registry Settings (Optional)
+    ```
+    If your registries require specific security settings (like blocking insecure HTTP connections), you can define them individually at the bottom of the file:
+
+    [[registry]]
+    location = "docker.io"
+    insecure = false
+
+    [[registry]]
+    location = "quay.io"
+    insecure = false
+
+    # Example of a local, private development registry that doesn't use SSL/TLS
+    [[registry]]
+    location = "localhost:5000"
+    insecure = true
+
+
+    Verify Your Configuration
+    # podman info --format '{{.Registries}}'
+    ```
+
+    - Logging Into Multiple Registries
+    ```
+    # podman login docker.io
+    Username: amitaryan0010
+    Password:
+    Login Succeeded!
+
+    # podman login quay.io
+    Username: path4cloud
+    Password:
+    Login Succeeded!
+    ```
+    - Pull the images:
+        - [ee-minimal-rhel9](https://catalog.redhat.com/en/software/containers/ansible-automation-platform-27/ee-minimal-rhel9/69fb1e41adf965f3eabd5793)
+        - [ee-supported-rhel9](https://catalog.redhat.com/en/software/containers/ansible-automation-platform-27/ee-supported-rhel9/69fb1e41580272b336c0edd1)
+        ```
+        # podman pull registry.redhat.io/ansible-automation-platform-27/ee-minimal-rhel9:2.16-1787217391
+        Trying to pull registry.redhat.io/ansible-automation-platform-27/ee-minimal-rhel9:2.16-1787217391...
+        Getting image source signatures
+        Checking if image destination supports signatures
+        Copying blob 5a25ec6113a2 done   |
+        Copying config 518574a4da done   |
+        Writing manifest to image destination
+        Storing signatures
+        518574a4da59cd44302f06d53a4bac27d2daae65fe7938a2f36eafd55b48bc1c
+        [root@rhel-9 ~]# podman images
+        REPOSITORY                                                          TAG              IMAGE ID      CREATED      SIZE
+        registry.redhat.io/ansible-automation-platform-27/ee-minimal-rhel9  2.16-1787217391  518574a4da59  2 weeks ago  369 MB
+        ```
+
+#### PRO TIPS
+- In the container world, an image name is considered "qualified" or "unqualified" based on its structure:
+    - Qualified image name: Includes the full registry domain.
+        - Example: docker.io/library/ubuntu or ://redhat.com
+        - Podman knows exactly where to go to download this image.
+    - Unqualified image name: Only includes the short image name.
+        - Example: ubuntu or nginx or ubi9/ubi
+        - Podman doesn't know where this lives because the domain is missing.
+- Therefore, unqualified-search-registries means: "If the user types a short, incomplete image name, look through this list of registries to find it.
+- "How Podman uses this list:
+    - When you run a command like podman pull nginx, Podman evaluates the unqualified name against your list from left to right:
+        - It looks for ://redhat.com. If not found...
+        - It looks for registry.redhat.io/nginx. If not found...
+        - It looks for docker.io/nginx.
+    - If it finds the image in one of those registries, it downloads it. If it doesn't find it in any of them, the command fails.
 
 ### How Community Contribution Works:
 - You can create your own module and maintain it on github or any other portal and publish that module. 
