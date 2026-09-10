@@ -328,6 +328,7 @@ Ansible is agentless, meaning you do not need to install ansible-core or any spe
     - Pull the images:
         - [ee-minimal-rhel9](https://catalog.redhat.com/en/software/containers/ansible-automation-platform-27/ee-minimal-rhel9/69fb1e41adf965f3eabd5793)
         - [ee-supported-rhel9](https://catalog.redhat.com/en/software/containers/ansible-automation-platform-27/ee-supported-rhel9/69fb1e41580272b336c0edd1)
+        - [other execution environments](https://catalog.redhat.com/en/search?gs=&q=execution+environments&searchType=containers)
         ```
         # podman pull registry.redhat.io/ansible-automation-platform-27/ee-minimal-rhel9:2.16-1787217391
         Trying to pull registry.redhat.io/ansible-automation-platform-27/ee-minimal-rhel9:2.16-1787217391...
@@ -342,7 +343,41 @@ Ansible is agentless, meaning you do not need to install ansible-core or any spe
         REPOSITORY                                                          TAG              IMAGE ID      CREATED      SIZE
         registry.redhat.io/ansible-automation-platform-27/ee-minimal-rhel9  2.16-1787217391  518574a4da59  2 weeks ago  369 MB
         ```
-
+        OR
+        ```
+        While running ansible-navigator, it will pull the images as per ansible-navigator.yaml config
+        # ansible-navigator settings
+        --------------------------------------------------------------------------------------------------------------
+        Execution environment image and pull policy overview
+        --------------------------------------------------------------------------------------------------------------
+        Execution environment image name:     registry.redhat.io/ansible-automation-platform-27/ee-supported-rhel9:latest
+        Execution environment image tag:      latest
+        Execution environment pull arguments: None
+        Execution environment pull policy:    tag
+        Execution environment pull needed:    True
+        --------------------------------------------------------------------------------------------------------------
+        Updating the execution environment
+        --------------------------------------------------------------------------------------------------------------
+        Running the command: podman pull registry.redhat.io/ansible-automation-platform-27/ee-supported-rhel9:latest
+        Trying to pull registry.redhat.io/ansible-automation-platform-27/ee-supported-rhel9:latest...
+        Getting image source signatures
+        Checking if image destination supports signatures
+        Copying blob dcc859fe5dcf skipped: already exists
+        Copying config d0ec1ac135 done   |
+        Writing manifest to image destination
+        Storing signatures
+        d0ec1ac135c1eb831bb6c5fa6784e9ebebc407bec6141823b89c665b2a65f511
+        Name                                            Default   Source                          Current
+        0│Ansible runner artifact dir                     True      Not set                         Not set
+        1│Ansible runner rotate artifacts count           True      Not set                         Not set
+        2│Ansible runner timeout                          True      Not set                         Not set
+        3│Ansible runner write job events                 True      Defaults                        False
+        4│App                                             False     Command line                    settings
+        5│Cmdline                                         True      Not set                         Not set
+        6│Collection doc cache path                       True      Defaults                        /root/.cache/ansible-navigator/collection_doc_cache.db
+        7│Config                                          True      Not set                         Not set
+        8│Container engine                                False     Automatically determined        podman
+        ```
 #### PRO TIPS
 - In the container world, an image name is considered "qualified" or "unqualified" based on its structure:
     - Qualified image name: Includes the full registry domain.

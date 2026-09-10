@@ -172,3 +172,10 @@ ansible-navigator:
     level: info
     file: /dev/null
 ```
+- inventory -> entries: - /home/ansibleuser/inventoryThis explicitly tells Ansible Navigator to use the inventory file located at /home/ansibleuser/inventory. You will not need to pass the -i flag when running your playbooks; this host list is automatically mounted inside your runtime container.
+- image: registry.redhat.io/.../ee-supported-rhel9:latestNavigator will execute your playbooks inside this official Red Hat Automation Platform 2.6 container image. It includes standard, certified, and supported Ansible collections running on a Red Hat Enterprise Linux 9 base.
+- pull -> policy: missingThis is an excellent configuration choice for speed. Navigator will only download the image if it is missing from your local system. It will skip checking the Red Hat Registry for new layers every single time you execute a command, saving you time and bandwidth.
+- playbook-artifact -> enable: falseDisables the creation of artifact JSON files (playbook execution receipts). This is highly practical since it prevents cluttered project directories and ensures interactive prompts (like Ansible Vault or vars_prompt) will work without freezing.
+- mode: stdoutThis completely disables the interactive Text User Interface (TUI). Instead of a zoomable text dashboard, your playbooks will print scrolling text directly to your terminal window, perfectly mimicking the behavior of classic ansible-playbook.
+- logging -> level: infoSets the logging Verbosity to "Information" level, meaning it tracks general operations, container attachments, and configuration loads.
+- logging -> file: /dev/nullEven though the logging level is set to info, you are piping the log output directly into the system black hole (/dev/null). No log file will actually be written to your disk, keeping your workspace entirely clean.

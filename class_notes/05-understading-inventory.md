@@ -220,3 +220,32 @@ explore other inventory options:
     (**Variable can be associated with inventory host or inventory group)
     # ansible-navigator inventory -i <path> -m stdout --graph ungrouped (will show the hosts that are not part of any group)
     # ansible-navigator inventory -i <path>  (will show the output interactively)
+
+```
+$ ansible-navigator inventory --graph
+@all:
+  |--@ungrouped:
+  |  |--localhost
+  |--@target_node:
+  |  |--docker
+  |  |--centos9
+
+$ ansible-navigator inventory -i ansible-zero-to-hero/master_inventory/prod/hosts --graph
+@all:
+  |--@ungrouped:
+  |--@linux:
+  |  |--server1.path4cloud.com
+  |  |--server2.path4cloud.com
+  |  |--servera.path4cloud.com
+  |  |--serverb.path4cloud.com
+  |  |--serverc.path4cloud.com
+  |  |--serverd.path4cloud.com
+
+$ ansible-navigator inventory -i ansible-zero-to-hero/master_inventory/ --host server1.path4cloud.com
+{}
+
+$ ansible-navigator inventory --host localhost
+{
+    "ansible_connection": "local"
+}
+```

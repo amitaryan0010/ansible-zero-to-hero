@@ -11,8 +11,8 @@
 - Controller Node: 
     - running on RHEL9 and registered to REDHAT CDN with Developer Subscription.
     - ansible-core [2.14.18] installed
-    - ansible-navigator [] installed
-    - Container Image repositories configured and logged in
+    - ansible-navigator [26.8.0] installed
+    - Container Image repositories (registry.redhat.io) configured and logged in
     - Updated the /etc/hosts file of all servers with IP and hostname for all servers to connect with hostname if required, else IP is suffice to work
 
 - Managed Node:
@@ -50,19 +50,22 @@
     # sed -i "s|ansibleuser|<new_user>|g" ansibleuser
     ```
 
-3) Copy and rename the anisble.cfg file to ansibleuser home directory as ansible.cfg (hidden file)
+3) Copy and rename the config files to ansibleuser home directory as hidden files:
     ```
     "as asibleuser"
     $ cd ansible-zero-to-hero/setup_files
     $ cp ansible.cfg /home/ansibleuser/.ansible.cfg
     (change the remote_user, if you have created an another user in step2)
 
+    $ cp ansible-navigator.yaml /home/ansibleuser/.ansible-navigator.yaml
+
 4) Create the inventory file under ansibleuser home directory and update with your target hostname or IP:
     ```
     $ touch inventory
     Update the target node
-    $ cat inventory
-    localhost
+    $ cat inventory 
+    localhost ansible_connection=local
+    # localhost
     
     [target_node]
     centos9
@@ -124,3 +127,125 @@
     ```    
     I have created sam user for all hosts and tried to ping with sam:
     ![alt text](../images/setup4.png)
+
+## How localhost work with classic ansible as managed host
+- Using classic ansible command with keys
+```
+Copy the SSH keys for a user to work it over SSH connection and put the localhost in inventory
+
+$ cat inventory
+#localhost ansible_connection=local
+localhost
+
+[target_node]
+docker
+centos9
+
+$ ansible localhost -m ping
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+```
+- Using classic ansible command without keys
+```
+No need to copy SSH keys for a user, it will work if localhost was defined in your inventory with ansible_connection=local, Ansible skipped SSH entirely beacuse it uses local Python execution. No SSH, no keys, and no passwords required. It will succeed instantly.
+
+$ cat inventory
+localhost ansible_connection=local
+#localhost
+
+[target_node]
+docker
+centos9
+
+$ ansible localhost -m ping
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+```
+## How localhost work with ansible navigator as managed host
+- We have already copied the ansible-navigator.yaml file, now we need to set it to as default:
+```
+Set the config file as environment variable for default config.
+$ export ANSIBLE_NAVIGATOR_CONFIG=/home/ansibleuser/.ansible-navigator.yaml
+
+To make this persistant, add an entry in .bashrc profile of this user.
+echo "export ANSIBLE_NAVIGATOR_CONFIG=/home/ansibleuser/.ansible-navigator.yaml" >> .bashrc
+```
+- Verify the path:
+```
+$ ansible-navigator exec -- ansible --version
+ansible [core 2.16.19]
+  config file = /home/ansibleuser/.ansible.cfg
+  configured module search path = ['/home/runner/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/local/lib/python3.12/site-packages/ansible
+  ansible collection location = /home/runner/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/local/bin/ansible
+  python version = 3.12.13 (main, Jul 10 2026, 00:00:00) [GCC 11.5.0 20240719 (Red Hat 11.5.0-14)] (/usr/bin/python3.12)
+  jinja version = 3.1.6
+  libyaml = True
+```
+
+- To ping/check hostname, container, as ansible_connection=local
+```
+$ cat inventory
+localhost ansible_connection=local
+
+$ ansible-navigator exec -- ansible localhost -m setup -a "filter=ansible_hostname"
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "ansible_hostname": "c78a25303a99",
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false
+}
+
+$ ansible-navigator exec --container-options="--net=host" -- ansible localhost -m setup -a "filter=ansible_hostname"
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "ansible_hostname": "rhel-9",
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false
+}
+
+--container-options="--net=host": This breaks down the network isolation wall. By default, Podman/Docker creates a private virtual network for the container. The --net=host flag tells the container engine: "Do not isolate the network. Let this container share the host's exact network interface."The result: When Ansible inside the container tries to SSH into localhost:22, it routes directly to the physical RHEL-9 host machine's SSH daemon. Assuming your container has the correct SSH keys mounted to authenticate, it will successfully connect to and manage your host machine.
+
+To make the --net=host setting permanent, you need to use the container-options parameter inside your ansible-navigator.yaml
+
+execution-environment:
+    image: registry.redhat.io/ansible-automation-platform-26/ee-supported-rhel9:latest
+    pull:
+      policy: missing
+    # Add these lines right here
+    container-options:
+      - "--net=host"
+```
+- inside container, it will not work without ansible_connection=local beacuse it requies SSH Keys inside the container.
+```
+$ ansible-navigator exec -- ansible localhost -m setup -a "filter=ansible_hostname"
+localhost | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: connect to host localhost port 22: Connection refused",
+    "unreachable": true
+}
+
+** Ansible inside the container tried to SSH to localhost:22 inside its own container network loopback. Since the execution environment container is not running an SSH server daemon on port 22 inside itself, the connection was instantly knocked back with a Connection refused error.
+
+$ ansible-navigator exec --container-options="--net=host" -- ansible localhost -m setup -a "filter=ansible_hostname"
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "ansible_hostname": "rhel-9",
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false
+}
+```

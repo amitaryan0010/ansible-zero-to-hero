@@ -1,0 +1,4 @@
+[linux]
+server1.path4cloud.com
+server2.path4cloud.com
+server[a:d].path4cloud.com

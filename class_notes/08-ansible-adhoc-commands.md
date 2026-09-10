@@ -21,4 +21,33 @@
     | `-k`   | Ask SSH password    |
     | `-K`   | Ask sudo password   |
     | `-o`   | One-line output     |
-    | `-f`   | Forks (parallelism) |                
+    | `-f`   | Forks (parallelism) |
+
+#  Ansible Navigator Ad-hoc Commands
+- Basic Syntax:
+
+        ansible-navigator exec ansible <hosts> -m <module>
+```
+$ ansible-navigator exec -- ansible all -m setup -a "filter=ansible_hostname"
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "ansible_hostname": "f57501e845ec",
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false
+}
+docker | SUCCESS => {
+    "ansible_facts": {
+        "ansible_hostname": "docker",
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false
+}
+centos9 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_hostname": "centos9",
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false
+}
+```

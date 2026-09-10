@@ -1,0 +1,2 @@
+python3-dnf [platform:rpm]
+psycopg2-binary
