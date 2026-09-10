@@ -41,6 +41,7 @@ Login Succeeded!
 # ansible-navigator inventory < > (to manipulate or explore the inventory)
 # ansible-navigator config < > (to list the current configured navigator settings)
 ```
+
 ![alt text](../images/an1.png)
 
 ![alt text](../images/an2.png)
