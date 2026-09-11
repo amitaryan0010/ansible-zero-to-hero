@@ -84,7 +84,63 @@
 
     - name: Print a course details variable value as per reference to its index and key - course_details[0].name
       ansible.builtin.debug:
-        msg: |
-          First Course Name: {{ course_details[0].name }}
-          First Course Trainer: {{ course_details[0].trainer }}
-          First Course Mode: {{ course_details[0].mode }}
+        msg: "First Course Name: {{ course_details[0].name }}"
+
+- name: Ansible Combining List of Dictionaries Variables
+  hosts: localhost
+  vars:
+    Info:
+      name: Sam
+      age: 28
+      occupation: Trainer
+    
+    Address:
+      location: Rohtak
+      country: India
+      postcode: 124001
+
+  tasks:
+    - name: Combine Info and Address into a merged_dict var
+      ansible.builtin.set_fact:
+        merged_dict: "{{ Info | ansible.builtin.combine(Address) }}"
+
+    - name: Print the merged_dict variable value
+      ansible.builtin.debug:
+        msg: "{{ merged_dict }}"
+
+- name: Ansible Combining List of Dictionaries Variables with Overriding
+  hosts: localhost
+  vars:
+    Info:
+      name: Sam
+      age: 28
+      occupation: Trainer
+    
+    Address:
+      location: Rohtak
+      country: India
+      postcode: 124001
+      age: 30
+
+  tasks:
+    - name: Combine Info and Address into a merged_dict var with overriding
+      ansible.builtin.set_fact:
+        merged_dict: "{{ Info | ansible.builtin.combine(Address, recursive=True) }}"
+
+    - name: Print the merged_dict variable value after overriding
+      ansible.builtin.debug:
+        msg: "{{ merged_dict }}"
+
+- name: Ansible Referencing nested variables
+  hosts: localhost
+  gather_facts: true
+  tasks:
+     # facts must use either bracket notation or dot notation
+    - name: Print the ansible_facts using bracket notation
+      ansible.builtin.debug:
+        msg: "My Hostname: {{ ansible_facts['hostname'] }}"
+
+    - name: Print the ansible_facts using dot notation
+      ansible.builtin.debug:
+        msg: "My IP is '{{ ansible_facts.eth0.ipv4.address }}'"
+       
