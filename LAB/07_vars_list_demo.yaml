@@ -1,0 +1,15 @@
+---
+- name: Ansible Variable Usage with Lists (Intermediate Guide)
+  hosts: localhost
+  vars:
+    packages:
+      - httpd
+      - vim
+      - git
+      - curl
+    
+  tasks:
+    - name: Install the list of packages
+      ansible.builtin.dnf:
+        name: "{{ packages }}"
+        state: present

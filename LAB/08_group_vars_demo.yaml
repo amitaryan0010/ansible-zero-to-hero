@@ -1,0 +1,8 @@
+---
+- name: Ansible Variable Usage with Lists (Intermediate Guide)
+  hosts: all
+  tasks:
+    - name: Install the list of packages
+      ansible.builtin.dnf:
+        name: "{{ packages }}"
+        state: present
