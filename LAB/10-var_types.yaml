@@ -10,11 +10,11 @@
   tasks:
     - name: Print a course name variable value as per its scope
       ansible.builtin.debug:
-        msg: "{{ course_name }}"
+        msg: "All Courses: {{ course_name }}"
 
     - name: Print a course name variable value as per reference to its index
       ansible.builtin.debug:
-        msg: "{{ course_name[0] }}"
+        msg: "First Course: {{ course_name[0] }}"
 
 - name: Ansible Dictionary Variable Usage
   hosts: localhost
@@ -27,8 +27,8 @@
   tasks:
     - name: Print a course details variable value as per its scope
       ansible.builtin.debug:
-        msg: "{{ course_details }}"
+        msg: "All Course Details: {{ course_details }}"
 
     - name: Print a course details variable value as per reference to its key
       ansible.builtin.debug:
-        msg: "{{ course_details.name }}"
+        msg: "Course Name: {{ course_details.name }}"
