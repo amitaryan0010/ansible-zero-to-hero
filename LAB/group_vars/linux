@@ -1,3 +1,5 @@
 packages:
-      - git
-      - curl
+  - git
+  - curl
+course_name:
+  - "RedHat Ansible Automation"

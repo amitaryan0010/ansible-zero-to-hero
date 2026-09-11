@@ -1,0 +1,9 @@
+---
+- name: Learn Ansible Variables Scope
+  hosts: all
+  gather_facts: false  # Disables system checks to keep output clean and fast
+
+  tasks:
+    - name: Print a course name variable value as per its scope
+      ansible.builtin.debug:
+        msg: "{{ course_name }}"
