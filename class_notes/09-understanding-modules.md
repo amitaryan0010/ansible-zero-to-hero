@@ -130,3 +130,67 @@
     Better readability. You instantly know: 
         - where module comes from
         - what it belongs to
+
+## With ansible-navigator 
+```
+$ ansible-navigator doc -l
+amazon.aws.autoscaling_group                                      Create or delete AWS AutoScaling Groups (ASGs)
+amazon.aws.autoscaling_group_info                                 Gather information about EC2 Auto Scaling Groups (ASGs) in AWS
+amazon.aws.autoscaling_instance                                   manage instances associated with AWS AutoScaling Groups (ASGs)
+amazon.aws.autoscaling_instance_info                              describe instances associated with AWS AutoScaling Groups (ASGs)
+amazon.aws.autoscaling_instance_refresh                           Start or cancel an EC2 Auto Scaling Group (ASG) instance refresh in AWS
+amazon.aws.autoscaling_instance_refresh_info                      Gather information about EC2 Auto Scaling Group (ASG) Instance Refreshes in AWS
+amazon.aws.aws_az_info                                            Gather information about availability zones in AWS
+amazon.aws.aws_caller_info                                        Get information about the user and account being used to make AWS calls
+amazon.aws.aws_region_info                                        Gather information about AWS regions
+amazon.aws.backup_plan                                            Manage AWS Backup Plans
+amazon.aws.backup_plan_info                                       Describe AWS Backup Plans
+amazon.aws.backup_restore_job_info                                List information about backup restore jobs
+amazon.aws.backup_selection                                       Create, delete and modify AWS Backup selection
+amazon.aws.backup_selection_info                                  Describe AWS Backup Selections
+amazon.aws.backup_tag                                             Manage tags on backup plan, backup vault, recovery point
+amazon.aws.backup_tag_info                                        List tags on AWS Backup resources
+amazon.aws.backup_vault                                           Manage AWS Backup Vaults
+amazon.aws.backup_vault_info                                      Describe AWS Backup Vaults
+.
+.
+.
+```
+- To explore one particular module
+```
+$ ansible-navigator doc dnf
+> ANSIBLE.BUILTIN.DNF    (/usr/local/lib/python3.12/site-packages/ansible/modules/dnf.py)
+
+        Installs, upgrade, removes, and lists packages and groups with the `dnf' package manager.
+
+ADDED IN: version 1.9 of ansible-core
+
+  * note: This module has a corresponding action plugin.
+
+OPTIONS (= is mandatory):
+.
+.
+.
+
+(it will open in Editor mode (kind of), where we can search in command mode using / and look for any string. Try to find example)
+
+/EXAMPLE
+EXAMPLES:
+
+- name: Install the latest version of Apache
+  ansible.builtin.dnf:
+    name: httpd
+    state: latest
+
+- name: Install Apache >= 2.4
+  ansible.builtin.dnf:
+    name: httpd >= 2.4
+    state: present
+
+- name: Install the latest version of Apache and MariaDB
+  ansible.builtin.dnf:
+    name:
+      - httpd
+      - mariadb-server
+    state: latest
+```

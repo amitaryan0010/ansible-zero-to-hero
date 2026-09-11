@@ -295,22 +295,10 @@ or
                 - Run the builder command. This compiles your custom dependencies over the minimal image and saves it locally:
                 - `# ansible-builder build -t <custom_name_of_image>:latest`
 
-                        $ ansible-builder build -t my-custom-ee:1.0
+                        $ sudo ansible-builder build -t my-custom-ee:1.0
 
                     (Note: Ensure you are logged into Podman via podman login registry.redhat.io before running this so it can pull the base image).
 
+            7. Copy the image to normal user visibility
 
-
-
-        Another Common Failure Example: Missing Python dependency
-            - for an example, we have this task in our playbook:
-                - name: Create PostgreSQL DB
-                  community.postgresql.postgresql_db:
-                    name: testdb
-
-            - It might land with this error. (Even if collection exists → Python lib missing in EE)
-                psycopg2 is not installed 
-
-            - Fix:
-                create requirement.yaml and put "psycopg2-binary" and rebuild the EE image.
-
+                    sudo podman save localhost/my_custom-ee:1.0 | podman load
