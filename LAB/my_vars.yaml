@@ -1,6 +1,6 @@
 version: 1.23.45
 name: "Conan O'Brien"
-dialog: 'He said "I just can\'t get enough of those single and double-quotes!"'
+dialog: 'He said "I just can''t get enough of those single and double-quotes!"'
 ghosts:
   - inky
   - pinky
