@@ -21,7 +21,7 @@
 - Ansible uses Jinja2 templating for variables. They must be wrapped in double curly braces: {{ variable_name }}.
 
 - **When to quote variables**
-    - If you start a value with {{ variable_name }}, you must quote the whole exprression to create valid YAML syntax. If you do not quote the whole expression, the YAML parser cannot interpret the syntax. The parser cannot determine if it is a variable or the start of a YAML dictionary. 
+    - If you start a value with {{ variable_name }}, you must quote the whole expression to create valid YAML syntax. If you do not quote the whole expression, the YAML parser cannot interpret the syntax. The parser cannot determine if it is a variable or the start of a YAML dictionary. 
 
 - Refer [Official Documentation](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_variables.html) for more details.
 
@@ -82,3 +82,8 @@
     - Whenever a playbook starts, it runs a hidden task called Gathering Facts. This retrieves real-time infrastructure data from the target machine (like network setups, OS type, and RAM details) and stores them in automatic variables:
         - {{ ansible_hostname }} → Returns host system name (e.g., rhel-9).
         - {{ ansible_os_family }} → Returns OS family (e.g., RedHat or Debian).
+
+# DEMO
+1. Variable at Play Level:
+    - run [07_vars_list_demo.yaml](../LAB/07_vars_list_demo.yaml), in this file, we have list of variables defined at play level and will be parse to taks within in same level.
+    
