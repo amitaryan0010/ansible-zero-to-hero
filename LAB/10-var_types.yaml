@@ -1,6 +1,7 @@
 ---
 - name: Ansible List Variable Usage
   hosts: localhost
+  gather_facts: false
   vars:
     course_name:
       - "Ansible Beginner Guide"
@@ -8,11 +9,11 @@
       - "Ansible Advanced Guide"
     
   tasks:
-    - name: Print a course name variable value as per its scope
+    - name: Print a 'course name' variable value as per its scope
       ansible.builtin.debug:
         msg: "{{ course_name }}"
 
-    - name: Print a course name variable value as per reference to its index
+    - name: Print a course name variable value as per reference to its index - course_name[0]
       ansible.builtin.debug:
         msg: "First Course: {{ course_name[0] }}"
 
@@ -40,6 +41,10 @@
     - name: Print all course
       ansible.builtin.set_fact:
         all_courses: "{{ devops_courses + cloud_courses }}"
+
+    - name: Print all courses
+      ansible.builtin.debug:
+        msg: "{{ all_courses }}"
 
 - name: Ansible Dictionary Variable Usage
   hosts: localhost
