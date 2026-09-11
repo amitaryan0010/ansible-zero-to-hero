@@ -10,7 +10,7 @@
   tasks:
     - name: Print a course name variable value as per its scope
       ansible.builtin.debug:
-        msg: "All Courses: {{ course_name }}"
+        msg: "{{ course_name }}"
 
     - name: Print a course name variable value as per reference to its index
       ansible.builtin.debug:
@@ -27,7 +27,7 @@
   tasks:
     - name: Print a course details variable value as per its scope
       ansible.builtin.debug:
-        msg: "All Course Details: {{ course_details }}"
+        msg: "{{ course_details }}"
 
     - name: Print a course details variable value as per reference to its key
       ansible.builtin.debug:
