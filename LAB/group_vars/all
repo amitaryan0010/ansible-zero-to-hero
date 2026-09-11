@@ -1,2 +1,4 @@
+packages:
+  - telnet
 course_name:
   - "Ansible Automation"

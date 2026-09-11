@@ -1,5 +1,6 @@
 packages:
   - git
   - curl
+  - telnet
 course_name:
   - "RedHat Ansible Automation"

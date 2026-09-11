@@ -1,3 +1,2 @@
-# chnage this file name to a target hostname
 packages:
       - httpd

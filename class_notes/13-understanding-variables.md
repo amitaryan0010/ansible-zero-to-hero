@@ -85,5 +85,41 @@
 
 # DEMO
 1. Variable at Play Level:
-    - run [07_vars_list_demo.yaml](../LAB/07_vars_list_demo.yaml), in this file, we have list of variables defined at play level and will be parse to taks within in same level.
-    
+    - Run [07_vars_list_demo.yaml](../LAB/07_vars_list_demo.yaml), in this file, we have list of variables defined at play level and will be parse to taks within in same level.
+    - We have few packages defined at play level, and we are targeting on localhost, since all are installed, so no changes are reported.
+
+        $ ansible-navigator run 07_vars_list_demo.yaml
+
+    ![alt text](../images/var1.png)
+
+2. Variable at Group and Host Level:
+    - We have two directories created at project directory, `group_vars` and `host_vars` where under `group_vars`, we have two files one is with name `all` which represents the all hosts in inventory file, and other is `linux` which represents the group of servers under `linux` group in inventory. And under `host_vars`, we have another two files with the same name of inventory host.
+    - In these files, we have defined two variables, one is  `packages` and other is `course_name` with different values.
+    - These variable values will be parsed as per their scope, for `all` under `group_vars` will be applicable to all but we have same variable defined for inventory host under `group_vars` and under for dedicated inventory host under `host_vars` so this value will be applied accordinly.
+    - Let see in action:
+        - At `group_vars` for all - `packages == telnet`
+        - At `group_vars` for linux - `packages == git, curl and telnet`
+        - At `host_vars` for centos9 - `pacakges == httpd`
+
+        - Parsed values
+            - `packages == telnet` will be applied to `docker and localhost` **(on docker, it will fail since dnf is not the package manager for ubuntu machine)**
+            - `packages == httpd` will be applied to `centos9`, values defined at `group_vars` in `linux` will be overwritten by `host_vars`.
+
+        - Current State
+        ```
+        [ansibleuser@rhel-9 LAB]$ rpm -q telnet
+        package telnet is not installed
+
+        [ansibleuser@centos9 ~]$ rpm -q telnet
+        package telnet is not installed
+        [ansibleuser@centos9 ~]$ rpm -q httpd
+        package httpd is not installed
+        ```
+
+        - Run the playbook [08_group_vars_demo.yaml](../LAB/08_group_vars_demo.yaml):
+            
+            $ ansible-navigator 08_group_vars_demo.yaml
+
+        
+
+
