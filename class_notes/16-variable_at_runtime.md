@@ -47,6 +47,10 @@
 
             $ ansible-playbook <playbook.yaml> --extra-vars "@my_vars.json"
 
+#### TIP: If we are using `ansible-navigator` then also same paramter can be used
+- $ ansible-navigator run <playbook.yaml> --extra-vars "version=1.23 other_variable=Ansible"
+- $ ansible-navigator run <playbook.yaml> -e "version=1.23 other_variable=Ansible"
+
 ### DEMO
 - use this [11-var_at_runtime.yaml](../LAB/11-var_at_runtime.yaml) for this demo.
 - required files:

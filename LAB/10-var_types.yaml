@@ -143,4 +143,4 @@
     - name: Print the ansible_facts using dot notation
       ansible.builtin.debug:
         msg: "My IP is '{{ ansible_facts.eth0.ipv4.address }}'"
-       
+       #mag: "My IP is ' {{ ansible_facts['eth0']['ipv4']['address'] }}'"
