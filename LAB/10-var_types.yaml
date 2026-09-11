@@ -30,19 +30,19 @@
       - Azure
       - GCP
   tasks:
-    - name: Print all devops courses
+    - name: Print all 'devops courses'
       ansible.builtin.debug:
         msg: "{{ devops_courses }}"
 
-    - name: Print all cloud courses
+    - name: Print all 'cloud courses'
       ansible.builtin.debug:
         msg: "{{ cloud_courses }}"  
 
-    - name: Print all course
+    - name: Merging all course
       ansible.builtin.set_fact:
         all_courses: "{{ devops_courses + cloud_courses }}"
 
-    - name: Print all courses
+    - name: Print all courses [devops + cloud] after merging
       ansible.builtin.debug:
         msg: "{{ all_courses }}"
 
@@ -59,7 +59,7 @@
       ansible.builtin.debug:
         msg: "{{ course_details }}"
 
-    - name: Print a course details variable value as per reference to its key
+    - name: Print a course details variable value as per reference to its key - course_details.name
       ansible.builtin.debug:
         msg: "Course Name: {{ course_details.name }}"
 
@@ -82,6 +82,9 @@
       ansible.builtin.debug:
         msg: "{{ course_details }}"
 
-    - name: Print a course details variable value as per reference to its index and key
+    - name: Print a course details variable value as per reference to its index and key - course_details[0].name
       ansible.builtin.debug:
-        msg: "First Course Name: {{ course_details[0].name }}"
+        msg: |
+          First Course Name: {{ course_details[0].name }}
+          First Course Trainer: {{ course_details[0].trainer }}
+          First Course Mode: {{ course_details[0].mode }}
