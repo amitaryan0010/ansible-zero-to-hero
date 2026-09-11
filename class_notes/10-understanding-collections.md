@@ -49,6 +49,12 @@ We can install the collections through a distributed server, such as [Ansible Ga
 
 
 ## Execution Environment Collections
+- We can check the module inside of EE image
+
+    $ ansible-navigator doc -l
+
+![alt text](../images/cl9.png)
+
 - We can check the loaded collection against the EE image
 
     $ ansible-navigator collections list -m interactive

@@ -21,14 +21,17 @@
       module_name:            ---> Module name like service
         key: value            ---> Module arguments in key:value format
 ```
-- 🧠 Execution Flow (Important)
+- Execution Flow (Important)
   - Ansible runs in this order -->
   - Read inventory
   - Load playbook
   - Execute tasks (top → bottom)
   - Trigger handlers (if notified)
 
-## DEMO
+# DEMO
+
+## ansible-core classic version
+
 - So far, we ran the adhoc command to get our task done.
   ```
   # ansible all -m ping
@@ -77,6 +80,20 @@
   $ ansible-playbook <playbook.yaml> -C
   ```
   ![alt text](../images/play2.png)
+
+
+## ansible-navigator
+- running adhoc command:
+    
+    $ ansible-navigator exec -- ansible all -m ping
+
+    ![alt text](../images/anplay1.png)
+
+- running playbook:
+
+    $ ansible-navigator run ansible-zero-to-hero/LAB/01-ping.yaml
+
+    ![alt text](../images/anplay2.png)
 
 ## ⚠️ Important Rules
 - YAML is indentation-sensitive (very important ⚡)
