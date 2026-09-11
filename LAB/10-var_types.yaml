@@ -1,0 +1,14 @@
+---
+- name: Ansible Variable Usage (Beginner Guide)
+  hosts: localhost
+  vars:
+    # List Variable
+    course_name:
+      - "Ansible Beginner Guide"
+      - "Ansible Intermediate Guide"
+      - "Ansible Advanced Guide"
+    
+  tasks:
+    - name: Print a course name variable value as per its scope
+      ansible.builtin.debug:
+        msg: "{{ course_name }}"

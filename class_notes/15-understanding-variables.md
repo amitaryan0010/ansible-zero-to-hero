@@ -120,6 +120,25 @@
             
             $ ansible-navigator 08_group_vars_demo.yaml
 
-        
+        ![alt text](../images/var2.png)
 
+        - Post implementation state
+        ```
+        [ansibleuser@rhel-9 LAB]$ rpm -q telnet
+        telnet-0.17-85.el9.x86_64
 
+        [ansibleuser@centos9 ~]$ rpm -q telnet
+        package telnet is not installed
+
+        [ansibleuser@centos9 ~]$ rpm -q httpd
+        httpd-2.4.62-15.el9.x86_64
+        ```
+
+3. Another play with variable scope, run with `ansible-playbook` command now:
+    - for `all` value for `course_name` is `Ansible Automation`
+    - for `linux` value for `course_name` is `RedHat Ansible Automation`
+    - for `docker` value for `course_name` is `Ansible Automation on Docker`
+
+    $ ansible-playbook 09-vars_scope.yaml
+
+    ![alt text](../images/var3.png)
