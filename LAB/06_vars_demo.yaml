@@ -23,7 +23,7 @@
       vars:
         local_task_var: "I only exist inside this specific task!"
       ansible.builtin.debug:
-        msg: "Secret message: {{ local_task_var }} of this playbook"
+        msg: Secret message - {{ local_task_var }} of this playbook
   
 - name: Ansible Advacned Variable Usage (Intermediate Guide)
   hosts: all
