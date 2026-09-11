@@ -1,0 +1,37 @@
+---
+- name: Learn Ansible Variables (Beginner Guide)
+  hosts: localhost
+  gather_facts: false  # Disables system checks to keep output clean and fast
+
+  vars:
+    greeting: "Hello, Welcome to Ansible!"
+    trainer_name: "John"
+    course_days: 5
+    is_easy: true
+
+  tasks:
+    - name: Print a simple greeting string
+      ansible.builtin.debug:
+        msg: "{{ greeting }}"
+
+    # Note: Because the sentence starts with a variable {{ ... }}, the entire line MUST be in quotes!
+    - name: Combine text and number variables
+      ansible.builtin.debug:
+        msg: "{{ trainer_name }} is teaching a {{ course_days }}-day automation course."
+
+    # Defining a variable inside a SINGLE task (Task Scope)
+    - name: Task that uses a temporary variable
+      vars:
+        local_task_var: "I only exist inside this specific task!"
+      ansible.builtin.debug:
+        msg: "Secret message: {{ local_task_var }} of this playbook"
+
+    # Capturing dynamic output into a variable (Register)
+    - name: Run a shell command and capture its output
+      ansible.builtin.command: "uptime"
+      register: system_uptime  # This stores the command output as a variable
+
+    # Printing the captured variable
+    - name: Print the system uptime we just captured
+      ansible.builtin.debug:
+        msg: "The host uptime metrics are: {{ system_uptime.stdout }}"
