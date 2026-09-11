@@ -1,0 +1,17 @@
+---
+- name: Demonstrate Extra Variables and Data Types
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Debug passed variables
+      ansible.builtin.debug:
+        msg:
+          - "----------------------------------------"
+          - "Raw values and their types:"
+          - "----------------------------------------"
+          - "version: {{ version | default('Not Set') }} (Type: {{ version | type_debug }})"
+          - "other_variable: {{ other_variable | default('Not Set') }} (Type: {{ other_variable | type_debug }})"
+          - "pacman: {{ pacman | default('Not Set') }} (Type: {{ pacman | type_debug }})"
+          - "ghosts: {{ ghosts | default('Not Set') }} (Type: {{ ghosts | type_debug }})"
+          - "name: {{ name | default('Not Set') }} (Type: {{ name | type_debug }})"
+          - "dialog: {{ dialog | default('Not Set') }} (Type: {{ dialog | type_debug }})"
