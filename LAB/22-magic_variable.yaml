@@ -1,9 +1,9 @@
 ---
-- name: Readin custom facts from another host
+- name: Reading custom facts from another host
   hosts: docker
   gather_facts: yes
 
   tasks:
     - name: Display custom fact for {{ inventory_hostname }}
       ansible.builtin.debug:
-        msg: "welcome to {{ hostvars['centos9']['ansible_facts']['ansible_local']['info']['ansible_training']['trainer'] }}" 
+        msg: "welcome to {{ hostvars['centos9']['ansible_facts']['local']['info']['ansible_training']['trainer'] }}" 
