@@ -3,14 +3,7 @@
   hosts: localhost
   gather_facts: no
   
-  vars_files:
-    - my_variable.yaml
-
   tasks:
-    - name: Display the variable from the file
-      ansible.builtin.debug:
-        msg: "The fruit is: {{ my_fruit }}"
-
     - name: Load Variable from another file
       ansible.builtin.include_vars:
         file: my_variable.yaml
