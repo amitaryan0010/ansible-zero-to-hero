@@ -131,3 +131,8 @@
         (it will generate a new hash but this is for redhat only (in this demo), put this hash as value to passowrd variable)
         ```
 
+    - We can store the vault password in a file to support our automated CI/CD or any other automation. (and make sure it is added to your .gitignore)
+        - password is saved to this file [user_info_psd](../LAB/user_info_psd)
+
+            $ 
+
