@@ -2,6 +2,12 @@
 - name: Set Fact Variable Example
   hosts: localhost
   gather_facts: no
+
+  vars:
+    my_fruit: apple
+
+  vars_files:
+    - my_variable.yaml
   
   tasks:
     - name: Set a variable using set_fact
