@@ -1,0 +1,9 @@
+---
+- name: Read local facts
+  hosts: centos9
+  gather_facts: yes  # <-- This pulls your info.fact data into memory
+
+  tasks:
+    - name: Display custom local fact
+      ansible.builtin.debug:
+        msg: "welcome to {{ ansible_facts['local']['info']['ansible_training']['trainer'] }}"

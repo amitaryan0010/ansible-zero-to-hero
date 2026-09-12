@@ -31,5 +31,27 @@
     ```
 - Demo:
     - copy this [info.fact](../LAB/info.fact) file to any target node under `/etc/ansible/facts.d/` (if facts.d directory is not there then create it)
+        ```
+        $ ansible centos9 -b -a "mkdir -p /etc/ansible/facts.d"
+
+        $ ansible centos9 -m copy -a "src=info.fact dest=/etc/ansible/facts.d/"
+
+        $ ansible centos9 -b -a "ls -l /etc/ansible/facts.d"
+        ```
+
+    - Verify the facts
+        ```
+        $ ansible centos9 -m setup | grep -A5 -w ansible_local
+                "ansible_local": {
+                    "info": {
+                        "ansible_training": {
+                            "mode": "online",
+                            "target": "zero-to-hero",
+                            "trainer": "path4cloud"
+        ```
+
+    - When we need, we can callout those variables.
+        - check this playbook.
+        
 
     
