@@ -111,3 +111,23 @@
         password: redhat
         (pass the same password which we used while encrypting)
         ```
+
+        ```
+        $ ap 18-password_vault.yaml --vault-id @prompt
+        $ ap 18-password_vault.yaml --ask-vault-pass
+        OR
+        $ anr 18-password_vault.yaml --vault-id @prompt
+        $ anr 18-password_vault.yaml --ask-vault-pass
+
+        (run any, it will prompt for password)
+        ```
+    - In this example, we put the password in clear text as variable under vault but still if anyone knows the vault password, they can misuse this so to make it more secure, hashed the password adn then put the hash value inside the variable.
+        ```
+        $ ansible localhost -m debug -a "msg={{ 'redhat' | password_hash('sha512') }}"
+        localhost | SUCCESS => {
+            "msg": "$6$rounds=656000$M16.96GRkRn7dgVg$w4NgUwdd2jjSt/8k2fInf0K3nz2qR54WVz0VaKxRUUtXuhR/ODqulk75s52di0RsJm.7JvHWs3Ynmvb/z.Ot41"
+        }
+
+        (it will generate a new hash but this is for redhat only (in this demo), put this hash as value to passowrd variable)
+        ```
+
