@@ -1,0 +1,25 @@
+---
+- name: My File Variable Example
+  hosts: localhost
+  gather_facts: no
+  
+  tasks:
+    - name: Load Variable from another file
+      ansible.builtin.include_vars:
+        file: my_variable.yaml
+
+    - name: Display the variable from the included file
+      ansible.builtin.debug: 
+        msg: "The color is: {{ my_color }} and the place is: {{ my_place }}"
+
+    - name: Load Variable from included files as name parameter
+      ansible.builtin.include_vars:
+        file: my_variable.yaml
+        name: custom_vars
+
+    - name: Display the variable from the included file with name parameter
+      ansible.builtin.debug:
+        msg: >
+          The fruit is: {{ custom_vars.my_fruit }}
+          The color is: {{ custom_vars.my_color }}
+          The place is: {{ custom_vars.my_place }}

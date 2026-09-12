@@ -17,3 +17,6 @@ ansible.builtin.shell: /usr/bin/ls
 
 ansible.builtin.debug:
     msg: {{ ls_result }}
+```
+#### DEMO
+- Check this [12-register_var.yaml](../LAB/12-register_var.yaml)

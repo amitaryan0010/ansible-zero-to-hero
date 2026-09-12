@@ -1,0 +1,12 @@
+---
+- name: My File Variable Example
+  hosts: localhost
+  gather_facts: no
+  
+  vars_files:
+    - my_variable.yaml
+
+  tasks:
+    - name: Display the variable from the file
+      ansible.builtin.debug:
+        msg: "The fruit is: {{ my_fruit }}"
