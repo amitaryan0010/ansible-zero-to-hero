@@ -1,0 +1,16 @@
+---
+- name: Ansible Register Variable Example
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Get the current date and time
+      ansible.builtin.command: date
+      register: current_time
+
+    - name: Display the registered variable
+      ansible.builtin.debug:
+        msg: "The current date and time is: {{ current_time.stdout }}"
+
+    - name: Display the entire registered variable
+      ansible.builtin.debug:
+        var: current_time
