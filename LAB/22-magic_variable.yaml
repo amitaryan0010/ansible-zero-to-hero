@@ -2,12 +2,12 @@
 # Facts must be cached or gathered for centos9 first: The docker host cannot log into centos9 to read its files. If centos9 is not part of the same play run (or if you don't have Fact Caching enabled), hostvars['centos9'] will be completely empty.
 
 # Play 1: Force Ansible to collect facts from centos9 first
-- name: Pre-load facts for {{ inventory_hostname }} host
+- name: 1. Pre-load facts for centos9 host
   hosts: centos9
   gather_facts: yes
 
 # Play 2: Run your main logic on the docker host
-- name: Reading custom facts from another host
+- name: 2. Reading custom facts from another host
   hosts: docker
   gather_facts: yes
 
@@ -17,7 +17,7 @@
         msg: "welcome to {{ hostvars['centos9']['ansible_local']['info']['ansible_training']['trainer'] }}"
 
 # Play 3: checking groups and group_names
-- name: Display group names for {{ inventory_hostname }} host
+- name: 3. Display group names for docker host
   hosts: docker
   gather_facts: yes
 
