@@ -117,8 +117,8 @@
         ```
 
         - Run the playbook [08_group_vars_demo.yaml](../LAB/08_group_vars_demo.yaml):
-            
-            $ ansible-navigator 08_group_vars_demo.yaml
+
+                $ ansible-navigator 08_group_vars_demo.yaml
 
         ![alt text](../images/var2.png)
 
@@ -139,6 +139,8 @@
     - for `linux` value for `course_name` is `RedHat Ansible Automation`
     - for `docker` value for `course_name` is `Ansible Automation on Docker`
 
-    $ ansible-playbook 09-vars_scope.yaml
+    - Run this playbook [09-vars_scope.yaml](../LAB/09-vars_scope.yaml)
+
+            $ ansible-playbook 09-vars_scope.yaml
 
     ![alt text](../images/var3.png)

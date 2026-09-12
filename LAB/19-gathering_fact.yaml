@@ -15,4 +15,5 @@
     - name: Display the ansible_facts variable using the 'ansible' prefix
       ansible.builtin.debug:
         msg: >
-          My Ip is {{ ansible_facts.ansible_default_ipv4.address }} and my hostname is {{ ansible_facts.ansible_hostname }}.
+          My Ip is {{ ansible_facts.default_ipv4.address }} and my hostname is {{ ansible_facts.hostname }}.
+        # ansible_default_ipv4 vs default_ipv4: In modern Ansible collections, when accessing properties inside the ansible_facts dictionary, the 'ansible_' prefix is dropped from the child keys. 
