@@ -3,7 +3,7 @@
   hosts: localhost
   tasks:
     - name: Display gathered facts
-      debug:
+      ansible.builtin.debug:
         # var: ansible_facts  --> use this to display all the gathered facts
         var: ansible_facts['distribution']  # use this to display only the distribution name
 

@@ -4,14 +4,20 @@
   gather_facts: yes
   tasks:
     - name: Set a custom fact
-      set_fact:
+      ansible.builtin.set_fact:
         my_custom_fact: "Hello, this is a custom fact!"
 
     - name: Display the custom fact
-      debug:
+      ansible.builtin.debug:
         msg: "{{ my_custom_fact }}"
 
     - name: Calculate value on the fly
       ansible.builtin.set_fact:
         is_rhel_system: "{{ ansible_facts['os_family'] == 'RedHat' }}"
         backup_folder: "/tmp/backup/{{ ansible_facts['date_time']['date'] }}"
+
+    - name: Display calculated facts
+      ansible.builtin.debug:
+        msg:
+          - "Is this a RHEL system? {{ is_rhel_system }}"
+          - "Backup folder path: {{ backup_folder }}"
