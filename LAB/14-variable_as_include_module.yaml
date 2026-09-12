@@ -1,5 +1,5 @@
 ---
-- name: My File Variable Example
+- name: Include Variable Example
   hosts: localhost
   gather_facts: no
   

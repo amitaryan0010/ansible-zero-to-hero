@@ -1,0 +1,13 @@
+---
+- name: Set Fact Variable Example
+  hosts: localhost
+  gather_facts: no
+  
+  tasks:
+    - name: Set a variable using set_fact
+      ansible.builtin.set_fact:
+        my_fruit: banana
+
+    - name: Display the variable
+      ansible.builtin.debug:
+        msg: "The fruit is: {{ my_fruit }}"

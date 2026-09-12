@@ -13,7 +13,7 @@ vars_file:
 - DEMO:
     - check this [13-my_file_var.yaml](../LAB/13-my_file_var.yaml)
 
-# include_vars as module
+# include_vars module
 - We can load the variable from a file as a module into the play as task.
 ```
 - name: Variables included as a module
@@ -21,3 +21,20 @@ vars_file:
     file: my_variable.yaml
 ```
 - In Ansible, you can simulate loading variables from a file into a distinct namespace or "as a module" by using the name parameter inside the ansible.builtin.include_vars module.
+```
+ansible.builtin.include_vars:
+  file: my_variable.yaml
+  name: custom_vars
+```
+
+- DEMO:
+    - check this [14-variable_as_include_module.yaml](../LAB/14-variable_as_include_module.yaml)
+
+# set_fact module
+- It is used to create or modify variables dynamically during a playbook's execution.
+- Unlike static variables defined in a vars: block, set_fact variables are evaluated at runtime. This means you can calculate their values using other variables, conditional logic, or outputs registered from previous tasks.
+```
+ansible.builtin.set_fact:
+  my_fruit: banana
+```
+- Demo
