@@ -1,0 +1,15 @@
+---
+- name: Variable Prompt Example
+  hosts: localhost
+  gather_facts: no
+
+  vars_prompt:
+    - name: "my_fruit"
+      prompt: "Please enter your favorite fruit"
+      private: no
+      default: "apple"
+
+  tasks:
+    - name: Display the prompted variable
+      ansible.builtin.debug:
+        msg: "The favorite fruit is: {{ my_fruit }}"

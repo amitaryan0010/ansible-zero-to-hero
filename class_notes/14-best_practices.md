@@ -1,0 +1,13 @@
+## BEST PRACTICES
+- Playbook should be simple and descriptive, keep space in between of tasks and plays for better readability.
+- Keep Consistency for variable or parameters values.
+- Use Variables to keep the code dynamic and foller [Variable Precedence](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_variables.html#understanding-variable-precedence).
+- Use yaml tweaks to avoid syntax error.
+- Use commandline alias to quickly run the playbook:
+    - `alias anr="ansible-navigator run"`
+    - `alias an="ansible-navigator"`
+    - `alias ap="ansible-playbook"`
+- Check the syntax of playbook before run or to upload to main sources:
+    - `ansible-navigator run <playbook> --syntax-check`
+- Keep the code(playbooks) at central distribution place like github.
+- Organized your inventory as per your envrionment like, test, dev and prod.

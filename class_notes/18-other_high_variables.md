@@ -38,3 +38,16 @@ ansible.builtin.set_fact:
   my_fruit: banana
 ```
 - Demo
+    - check this [15-variable_set_fact.yaml](../LAB/15-variable_set_fact.yaml)
+
+# vars_prompt
+- The vars_prompt keyword in Ansible is used to interactively prompt the user for input when the playbook starts running. It is highly useful for gathering runtime configurations, confirmations, or sensitive details like passwords without hardcoding them into your files.
+```
+vars_prompt:
+  - name: system_user
+    prompt: "Enter the target username"
+    private: false
+    default: "admin"
+```
+- Demo
+    - check this
