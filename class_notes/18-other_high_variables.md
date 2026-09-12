@@ -49,5 +49,25 @@ vars_prompt:
     private: false
     default: "admin"
 ```
+- Hashing values supplied by vars_prompt - [more info](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_prompts.html#hashing-values-supplied-by-vars-prompt)
+  - You can hash the entered value so you can use it, for example, with the user module to define a password:
+  ```
+  vars_prompt:
+    - name: my_password2
+      prompt: Enter password2
+      private: true
+      encrypt: sha512_crypt
+      confirm: true
+      salt_size: 7
+  ```
+- Allowing special characters in vars_prompt values
+  - Some special characters, such as { and % can create templating errors. If you need to accept special characters, use the unsafe option
+  ```
+  vars_prompt:
+    - name: my_password_with_weird_chars
+      prompt: Enter password
+      unsafe: true
+      private: true
+  ```
 - Demo
     - check this [16-variable_prompt.yaml](../LAB/16-variable_prompt.yaml)

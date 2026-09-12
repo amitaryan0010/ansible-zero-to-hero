@@ -1,0 +1,18 @@
+---
+- name: Gathering Facts
+  hosts: localhost
+  tasks:
+    - name: Display gathered facts
+      debug:
+        # var: ansible_facts  --> use this to display all the gathered facts
+        var: ansible_facts['distribution']  # use this to display only the distribution name
+
+    - name: Display the ansible_facts variable
+      ansible.builtin.debug:
+        msg: >
+          Hello there! I am running on {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }} and my architecture is {{ ansible_facts['architecture'] }}.
+
+    - name: Display the ansible_facts variable using the 'ansible' prefix
+      ansible.builtin.debug:
+        msg: >
+          My Ip is {{ ansible_facts.ansible_default_ipv4.address }} and my hostname is {{ ansible_facts.ansible_hostname }}.

@@ -75,13 +75,15 @@
 ## Ansible Vault:
 - It will encrypt the yaml files which has variables defined using AES256 based encryption.
 - We can use `ansible-vault` command to:
-    - create              Create new vault encrypted file
-    - decrypt             Decrypt vault encrypted file
-    - edit                Edit vault encrypted file
-    - view                View vault encrypted file
-    - encrypt             Encrypt YAML file
-    - encrypt_string      Encrypt a string
-    - rekey               Re-key a vault encrypted file
+    ```
+    create              Create new vault encrypted file
+    decrypt             Decrypt vault encrypted file
+    edit                Edit vault encrypted file
+    view                View vault encrypted file
+    encrypt             Encrypt YAML file
+    encrypt_string      Encrypt a string
+    rekey               Re-key a vault encrypted file
+    ```
 
 - Demo:
     - Lets define the username and password in a separeate yaml file and encrypt that file using ansible-vault.
@@ -120,7 +122,16 @@
         $ anr 18-password_vault.yaml --ask-vault-pass
 
         (run any, it will prompt for password)
+        NOTE: If we are using the new way, ansible-navigator then put this flag "--playbook-artifact-enable false" as well. Else, it will hang and stuck there. Since we are using this in out ansible-navigator.yaml file so we are good.
         ```
+        - artifact disabled in `~/.ansible-navigator.yaml`
+        ```
+        execution-environment:
+          image: registry.redhat.io/ansible-automation-platform-27/ee-supported-rhel9
+        playbook-artifact:
+          enable: false
+        ```
+
     - In this example, we put the password in clear text as variable under vault but still if anyone knows the vault password, they can misuse this so to make it more secure, hashed the password adn then put the hash value inside the variable.
         ```
         $ ansible localhost -m debug -a "msg={{ 'redhat' | password_hash('sha512') }}"
@@ -128,7 +139,7 @@
             "msg": "$6$rounds=656000$M16.96GRkRn7dgVg$w4NgUwdd2jjSt/8k2fInf0K3nz2qR54WVz0VaKxRUUtXuhR/ODqulk75s52di0RsJm.7JvHWs3Ynmvb/z.Ot41"
         }
 
-        (it will generate a new hash but this is for redhat only (in this demo), put this hash as value to passowrd variable)
+        (it will generate a new hash but this is for redhat only (in this demo), put this hash as value to passowrd variable, no need to define password_hash filter now)
         ```
 
     - We can store the vault password in a file to support our automated CI/CD or any other automation. (and make sure it is added to your .gitignore)
@@ -141,3 +152,10 @@
                 OR
                 $ anr 18-password_vault.yaml --vault-password-file user_info_psd
 
+        - If we don't want to pass this vault file path then we can define in `ansible.cfg` under `default` section. so, whenever a password is required then ansible knows from where it needs to fetch the password.
+            ```
+            [default]
+            vault_password_file = <path>
+            ```
+
+    - More better way to organize the password containg file is defined as per predence of variables. Usually, we define under host_vars/<inventory_host>/file.yaml in same directory where we have playbook. This way, we don't need to define the variable in playbook.
