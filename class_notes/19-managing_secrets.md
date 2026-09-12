@@ -85,6 +85,29 @@
 
 - Demo:
     - Lets define the username and password in a separeate yaml file and encrypt that file using ansible-vault.
-    - check this file []() where varaibles are defined now.
-    - Run this playbook []() as below:
-    
+    - check this file [user_info.yaml](../LAB/user_info.yaml) where varaibles are defined now.
+    - Run this playbook [18-password_vault.yaml](../LAB/18-password_vault.yaml) as below:
+        ```
+        $ ansible-vault encrypt user_info.yaml
+        New Vault password:
+        Confirm New Vault password:
+        Encryption successful
+
+        (it will prompt for password, set some password and remember that, that can be used to edit/view this file)
+
+        $ cat user_info.yaml
+        $ANSIBLE_VAULT;1.1;AES256
+        62383466316462383336656530363537643862666431666635316364356663303664613937653934
+        6433306430376139346431366635303666666334316533360a393165353963343265303434356138
+        65643135633431363265366266376565323361623130626363303239383439633366346433323530
+        3536666264393336320a633933633237653166626633306337373766343864656566383562646461
+        38323432393033383263643934316461663931373463343861653730616164313330373831666537
+        6530356238623036643935636532613336636534626133303332
+
+        $ ansible-vault view user_info.yaml
+        Vault password:
+        ---
+        username: sam
+        password: redhat
+        (pass the same password which we used while encrypting)
+        ```
