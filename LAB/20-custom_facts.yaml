@@ -6,4 +6,4 @@
   tasks:
     - name: Display custom local fact
       ansible.builtin.debug:
-        msg: "welcome to {{ ansible_facts['local']['info']['ansible_training']['trainer'] }}"
+        msg: "welcome to {{ ansible_facts['ansible_local']['info']['ansible_training']['trainer'] }}"
