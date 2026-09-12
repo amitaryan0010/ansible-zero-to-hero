@@ -13,5 +13,5 @@
 
     - name: Calculate value on the fly
       ansible.builtin.set_fact:
-        is_rhel_system: "{{ ansible_facts['os_family'] == 'RedHat' }}"
-        backup_folder: "/opt/backup/{{ ansible_facts['date_time']['date'] }}"
+        is_rhel_system: "{{ ansible_facts['ansible_os_family'] == 'RedHat' }}"
+        backup_folder: "/opt/backup/{{ ansible_facts['ansible_date_time']['date'] }}"
