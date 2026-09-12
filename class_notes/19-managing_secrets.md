@@ -134,5 +134,10 @@
     - We can store the vault password in a file to support our automated CI/CD or any other automation. (and make sure it is added to your .gitignore)
         - password is saved to this file [user_info_psd](../LAB/user_info_psd)
 
-            $ 
+                $ echo redhat > user_info_psd
+                $ chmod 0600 user_info_psd
+
+                $ ap 18-password_vault.yaml --vault-password-file user_info_psd
+                OR
+                $ anr 18-password_vault.yaml --vault-password-file user_info_psd
 
