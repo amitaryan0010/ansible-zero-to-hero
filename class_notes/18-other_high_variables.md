@@ -50,4 +50,4 @@ vars_prompt:
     default: "admin"
 ```
 - Demo
-    - check this
+    - check this [16-variable_prompt.yaml](../LAB/16-variable_prompt.yaml)
