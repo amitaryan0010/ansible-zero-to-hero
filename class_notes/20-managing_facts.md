@@ -51,7 +51,14 @@
         ```
 
     - When we need, we can callout those variables.
-        - check this playbook.
+        - check this playbook [20-custom_facts.yaml](../LAB/20-custom_facts.yaml)
         
-
+### Setting Facts Dynamically (set_fact)
+- You can create or modify variables mid-playbook based on task outputs or inline logic using the ansible.builtin.set_fact module:
+    ```
+    - name: Calculate value on the fly
+      ansible.builtin.set_fact:
+        is_rhel_system: "{{ ansible_facts['os_family'] == 'RedHat' }}"
+        backup_folder: "/opt/backup/{{ ansible_facts['date_time']['date'] }}"
+    ```
     
