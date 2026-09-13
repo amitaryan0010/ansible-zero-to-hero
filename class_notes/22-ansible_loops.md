@@ -63,4 +63,6 @@
         ```
 
 ### DEMO
-- For simple list loop, check this playbook
+- For simple list loop, check this playbook [24-simple_list_loop.yaml](../LAB/24-simple_list_loop.yaml)
+
+- For dictionary loop, check this playbook [25-simple_dictionary_loop.yaml](../LAB/25-simple_dictionary_loop.yaml)

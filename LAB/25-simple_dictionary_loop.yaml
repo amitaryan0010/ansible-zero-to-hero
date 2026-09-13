@@ -8,7 +8,7 @@
       ansible.builtin.user:
         name: "{{ item.username }}"
         groups: "{{ item.group_name }}"
-      state: present
+        state: present
       loop:
         - { username: 'sam', group_name: 'wheel' }
         - { username: 'alice', group_name: 'developers' }
