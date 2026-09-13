@@ -7,7 +7,12 @@
     - name: Display gathered facts
       ansible.builtin.package_facts:
         manager: auto
-
+      # manager: auto option tells Ansible to automatically detect the system's package manager (such as apt, dnf, yum, or rpm) based on the operating system it is running against.
     - name: Display package facts
       ansible.builtin.debug:
         var: ansible_facts['packages']
+
+    - name: Print status if httpd is installed
+      ansible.builtin.debug:
+        msg: "Web server is installed!"
+      when: "'httpd' in ansible_facts.packages"
