@@ -10,7 +10,7 @@
     - name: Display the ansible_facts variable
       ansible.builtin.debug:
         msg: >
-          Hello there! I am running on {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }} and my architecture is {{ ansible_facts['architecture'] }}.
+          Hello there! I am running on {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }} and my architecture is {{ ansible_facts['architecture'] }} with root space of {{ ansible_facts['ansible_mounts'][0]['size_total'] | human_readable }}.
 
     - name: Display the ansible_facts variable using the 'ansible' prefix
       ansible.builtin.debug:
