@@ -13,7 +13,7 @@
     - name: checking service is running or not
       ansible.builtin.service:
         name: http
-        status: started
+        state: started
       #ignore_errors: true # (first run with comment and then uncomment it and then run)
 
     - name: last task

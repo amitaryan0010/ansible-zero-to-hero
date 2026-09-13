@@ -1,0 +1,14 @@
+---
+- name: Learning Simple List Loop
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Ensure multiple packages are installed
+      ansible.builtin.dnf:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - httpd
+        - curl
+        - git

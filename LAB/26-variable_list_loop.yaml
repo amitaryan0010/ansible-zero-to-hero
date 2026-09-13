@@ -1,0 +1,16 @@
+---
+- name: :Learning Variable List Loop
+  hosts: localhost
+  gather_facts: no
+  vars:
+    system_services:
+      - firewalld
+      - httpd
+      - sshd
+
+  tasks:
+    - name: Ensure services are running
+      ansible.builtin.service:
+        name: "{{ item }}"
+        state: started
+      loop: "{{ system_services }}"

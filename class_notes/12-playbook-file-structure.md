@@ -106,3 +106,24 @@
 - Checout this [03-multi-plays.yaml](../LAB/03-multi-plays.yaml)
 
   ![alt text](../images/play3.png)
+
+### Understaing Errors.
+✅ Sometime, we do encounter the errors in yaml syntax or a task specific.
+
+✅ We can check the syntax error:
+  - With yaml lint verficition, might be yaml file is valid but it is not upto the marks from ansible prespective.
+  - so we can check with --syntax-check flag before we run:
+      
+        # ansible-navigator run <playbook.yaml> --syntax-check
+
+✅ But there would be a chance that, we get the syntax passed with this flag as specified in above steps, an error can be specific to module
+  - Might be you used a wrong spelling for a module argument/options/paramater
+  - Might be you put an unsupported paramater for a specific module
+
+✅ Or there are chances, that error is not desired and you can simply ignore that error for your plabook and wanted to continue to run the playbook then we can use below flag, else, if error occurs then playbook will be stopped.
+    
+      ignore_errors: true
+      (it can be used in play header as well as in one or more tasks)
+
+- Demo:
+  - check this playbook[04-non-idempotent.yaml](../LAB/04-error-playbook.yaml)
