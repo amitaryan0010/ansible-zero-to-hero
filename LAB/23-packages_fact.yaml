@@ -1,0 +1,9 @@
+---
+- name: Gathering packages facts
+  hosts: localhost
+  gather_facts: yes
+
+  tasks:
+    - name: Display package facts
+      ansible.builtin.debug:
+        var: ansible_facts.packages

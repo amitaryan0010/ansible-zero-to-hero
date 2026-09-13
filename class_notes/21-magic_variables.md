@@ -8,3 +8,13 @@
     - groups: A dictionary containing all hosts in the inventory, sorted by their inventory groups (e.g., {{ groups['dbservers'] }} returns a list of all database host strings).
     - group_names: A list of all groups that the current host belongs to. Excellent for conditional switches:
     - inventory_hostname: The exact name string of the current host as defined inside your hosts file (independent of what the system's actual hardware hostname fact says).
+
+## Package Facts
+- This is package_fact module and gathered all information about installed package.
+- Packages are not gathered automatically with setup module or gather_facts: true parameter. We need to define it explicitly.
+```
+ansible-builtin.package_facs:
+
+ansible-builtin-debug:
+  var: ansible_facts['packages']
+```
