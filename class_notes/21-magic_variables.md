@@ -11,10 +11,12 @@
 
 ## Package Facts
 - This is package_fact module and gathered all information about installed package.
-- Packages are not gathered automatically with setup module or gather_facts: true parameter. We need to define it explicitly.
+- Packages are not gathered automatically with setup module or gather_facts: true parameter. We need to define it explicitly, else you will see ""ansible_facts.packages": "VARIABLE IS NOT DEFINED!""
 ```
 ansible-builtin.package_facs:
 
 ansible-builtin-debug:
   var: ansible_facts['packages']
 ```
+- Demo
+    - check this playbook [23-packages_fact.yaml](../LAB/23-packages_fact.yaml)
