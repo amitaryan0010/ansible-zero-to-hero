@@ -1,0 +1,12 @@
+---
+- name: Running something on a fresh minimal server
+  hosts: localhost
+  gather_facts: no  # <-- CRITICAL: Must be 'no' because Python is missing!
+  become: yes
+
+  tasks:
+    - name: Install Web Server
+      ansible.builtin.raw: dnf install -y httpd
+      register: raw_result
+      # Fix idempotency since raw always returns "changed"
+      changed_when: "'Installing' in raw_result.stdout"

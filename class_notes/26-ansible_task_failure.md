@@ -16,9 +16,10 @@
     - You can use the fail module paired with a conditional when statement to explicitly stop the playbook run if a pre-check requirement isn't met.
     - check this playbook [39-ansible_fail_module.yaml](../LAB/39-ansible_fail_module.yaml)
 
-- Some modules default resulted as chnaged state
+- Some modules default resulted as changed state
     - `ansible.builtin.raw`, `ansible.builtin.shell`, `ansible.builtin.command`: these modules alwasy result as changed state even they did not modify or changed something. Because the command, shell, and raw modules simply execute arbitrary lines of code, Ansible has no native way of knowing what your script actually did. It cannot see if your script modified a file, started a process, or just printed out text.
-    - To remain safe, Ansible defaults to reporting changed: true every single time these tasks run, breaking the principle of idempotency.
+    - To remain safe, Ansible defaults to reporting `changed: true` every single time these tasks run, breaking the principle of idempotency.
+    - So keep the idempotency, we can use `changed_when` and define the condition when it should result as changed.
     - Demo for `ansible.builtin.raw`
         - The ansible.builtin.raw module executes SSH commands directly on remote nodes without loading the Python interpreter. It bypasses Ansible’s standard module subsystem entirely.
         - check this playbook
