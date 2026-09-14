@@ -37,9 +37,12 @@
             immediate: true
 
         - name: updating web layout
-          ansible.builtin.lineinfile:
+          ansible.builtin.copy:
+            content: "WELCOME To CentOS9 Web Server\n"
             dest: /var/www/html/index.html
-            line: WELCOME To CentOS9 Web Server
+            owner: root
+            group: root
+            mode: '0644'
 
         - name: Restarting the service
           ansible.builtin.service:
