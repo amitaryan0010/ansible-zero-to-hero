@@ -3,6 +3,7 @@
   hosts: target_node
   become: yes
   gather_facts: yes
+  any_errors_fatal: true
 
   tasks:
     - name: installing httpd across all nodes
