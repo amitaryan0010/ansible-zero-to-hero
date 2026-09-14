@@ -1,5 +1,5 @@
 ---
-- name: Larning Ignore Errors
+- name: Learning Ignore Errors
   hosts: localhost
   gather_facts: no
 

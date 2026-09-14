@@ -1,0 +1,17 @@
+- name: Previous tasks can be controlled with 'fail' module as well
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Run a check health script
+      ansible.builtin.command: /usr/bin/bash files/check_health.sh
+      register: cleanup_result
+
+    - name: Fail the playbook if the cleanup script outputs 'CRITICAL'
+      ansible.builtin.fail:
+        msg: "The cleanup script failed with a critical error."
+      when: "'CRITICAL' in cleanup_result.stdout"
+
+    - name: This task will run only if the previous task did not fail with the specific error
+      ansible.builtin.debug:
+        msg: "The cleanup script ran successfully."

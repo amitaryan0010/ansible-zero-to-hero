@@ -1,0 +1,14 @@
+---
+- name: Learning Custom Failres
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Run a check health script
+      ansible.builtin.command: /usr/bin/bash files/check_health.sh
+      register: cleanup_result
+      failed_when: "'CRITICAL' in cleanup_result.stdout"  # This will cause the playbook to fail if the script outputs 'CRITICAL'
+
+    - name: This task will run only if the previous task did not fail with the specific error
+      ansible.builtin.debug:
+        msg: "The cleanup script ran successfully."
