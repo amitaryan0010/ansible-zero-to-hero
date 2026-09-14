@@ -34,5 +34,5 @@
   tasks:
     - name: Display user information
       ansible.builtin.debug:
-        msg: "User {{ item.key }} works in {{ item.value.department }} (Ext: {{ item.value.phone }})"
+        msg: "User {{ item.key }} works in {{ item['value']['department'] }} (Ext: {{ item['value']['phone'] }}"
       loop: "{{ users | dict2items }}"
