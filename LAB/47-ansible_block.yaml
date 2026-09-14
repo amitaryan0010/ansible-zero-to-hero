@@ -27,4 +27,11 @@
             #dest: "{{ lock_path }}"
             #line:  "httpd-0:2.4.62-14.el9.*"
             #state: present
+        - name: Updating the firewall configuration
+          ansible.posix.firewalld:
+            port: 80/tcp
+            zone: public
+            state: enabled
+            permanent: true
+            immediate: true
       when: ansible_facts['distribution'] == "CentOS"
