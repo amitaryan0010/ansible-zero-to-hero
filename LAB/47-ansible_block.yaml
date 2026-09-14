@@ -1,6 +1,6 @@
 ---
 - name: Learning Ansible Block
-  hosts: localhost
+  hosts: centos9
   gather_facts: yes
    
   vars:
