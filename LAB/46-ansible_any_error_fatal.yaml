@@ -1,0 +1,17 @@
+---
+- name: Learning any_error_fatal keyword
+  hosts: target_node
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: installing httpd across all nodes
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
+
+    - name: start the service
+      ansible.builtin.service:
+        name: httpd
+        state: started
+  
