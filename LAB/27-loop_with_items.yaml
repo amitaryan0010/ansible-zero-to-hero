@@ -1,0 +1,46 @@
+---
+- name: Learning with_items as old style loop
+  hosts: localhost
+  gather_facts: no
+  vars:
+    packages:
+      - [ 'httpd', 'curl' ]
+      - [ 'git', 'vim' ]
+
+  tasks:
+    - name: Print each package name
+      ansible.builtin.debug:
+        msg: "Installing package: {{ item }}"
+      with_items: "{{ packages }}"
+
+- name: Learning with_items as new style loop
+  hosts: localhost
+  gather_facts: no
+  vars:
+    packages:
+      - [ 'httpd', 'curl' ]
+      - [ 'git', 'vim' ]
+
+  tasks:
+    - name: Print each package name
+      ansible.builtin.debug:
+        msg: "Installing package: {{ item }}"
+      loop: "{{ packages | flatten }}"
+
+  # The flatten filter takes a nested, multi-layered list and crushes it into a single, flat, one-dimensional list.
+
+  ## Without the flatten filter:
+   # If you pass the raw variable straight to a modern loop like this: loop: "{{ packages }}", Ansible sees exactly two complex items:
+    # Iteration 1: item = ['httpd', 'curl']
+    #Iteration 2: item = ['git', 'vim']
+   # This would break modules like debug or dnf because they expect a single package string, not an entire array block.
+  
+  ###
+  # With the flatten filter:
+   # When you write loop: "{{ packages | flatten }}", the filter unpacks the internal brackets in your memory cache:
+   # [ 'httpd', 'curl', 'git', 'vim' ]
+   # Now, the loop executes 4 distinct times, processing one package name string at a time:
+    # Iteration 1: item = "httpd"
+    # Iteration 2: item = "curl"
+    # Iteration 3: item = "git"
+    # Iteration 4: item = "vim"

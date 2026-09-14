@@ -4,12 +4,12 @@
   gather_facts: no
 
   tasks:
-    - name: Create multiple users with distinct groups
+    - name: Create multiple users with groups
       ansible.builtin.user:
         name: "{{ item.username }}"
         groups: "{{ item.group_name }}"
         state: present
       loop:
         - { username: 'sam', group_name: 'wheel' }
-        - { username: 'alice', group_name: 'developers' }
-        - { username: 'bob', group_name: 'webmasters' }
+        - { username: 'alice', group_name: 'path4cloud' }
+        - { username: 'bob', group_name: 'path4cloud' }
