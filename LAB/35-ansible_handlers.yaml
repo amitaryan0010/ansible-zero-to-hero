@@ -1,0 +1,21 @@
+---
+- name: Learning Ansible Handlers
+  hosts: localhost
+  gather_facts: no
+  #force_handlers: yes  # <-- Forces handlers to run even if tasks below fail!
+
+  tasks:
+    - name: Update web server layout configuration
+      ansible.builtin.copy:
+        src: files/httpd.conf
+        dest: /etc/httpd/conf/httpd.conf
+      notify: Restart Web Server
+
+    - name: This task will deliberately fail
+      ansible.builtin.command: /usr/bin/false
+
+  handlers:
+    - name: Restart Web Server
+      ansible.builtin.service:
+        name: httpd
+        state: restarted

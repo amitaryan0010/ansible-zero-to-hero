@@ -84,3 +84,4 @@
 
 ## Condtion on basis of previous command output
 - Let say, we want to execute the next task only when the previous task is executed successfully and then basis of condition, I want to execute the next task.
+- check this playbook [34-ansible_rc_when.yaml](../LAB/34-ansible_rc_when.yaml)
