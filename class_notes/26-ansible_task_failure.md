@@ -24,5 +24,12 @@
         - The ansible.builtin.raw module executes SSH commands directly on remote nodes without loading the Python interpreter. It bypasses Ansible’s standard module subsystem entirely.
         - check this playbook for default behaviour [40-ansible_raw_module.yaml](../LAB/40-ansible_raw_module.yaml)
         - check this playbook for fix [41-ansible_raw_module_fix.yaml](../LAB/41-ansible_raw_module_fix.yaml)
+
+    - The command module executes binaries directly without loading a shell processor, making it faster and more secure. The shell module initializes a full shell session before running the command, which is required if you want to use advanced features like pipes (|), redirects (>), or environment variables.
+    
     - Demo for `ansible.builtin.command`
-        - 
+        - check this playbook for default behaviour [42-ansible_command_module.yaml](../LAB/42-ansible_command_module.yaml)
+        - heck this playbook for fix [43-ansible_command_module_fix.yaml](../LAB/43-ansible_command_module_fix.yaml)
+    - Demo for `ansible.builtin.shell`
+        - check this playbook for default behaviour 
+        - check this playbook for fix

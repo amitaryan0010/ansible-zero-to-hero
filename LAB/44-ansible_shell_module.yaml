@@ -1,0 +1,8 @@
+---
+- name: Learning Shell Module Behavior
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Run a command using shell feature (*)
+      ansible.builtin.shell: /usr/bin/ls -d /home/*
