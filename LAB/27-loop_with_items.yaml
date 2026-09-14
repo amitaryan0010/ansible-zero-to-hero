@@ -25,7 +25,8 @@
     - name: Print each package name
       ansible.builtin.debug:
         msg: "Installing package: {{ item }}"
-      loop: "{{ packages | flatten }}"
+      loop: "{{ packages }}"
+      #loop: "{{ packages | flatten }}"
 
   # The flatten filter takes a nested, multi-layered list and crushes it into a single, flat, one-dimensional list.
 

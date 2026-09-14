@@ -67,6 +67,8 @@
 - loop vs Legacy with_items
     - You might see older playbooks using keywords like with_items, with_dict, with_nested or with_sequence. While they still work, loop is the modern best practice.Use loop for simple lists and list variables.
 
+    - `with_items` : The with_items keyword is a legacy loop directive in Ansible that iterates over a list of items. Its unique characteristic is that it automatically flattens nested lists but with nwe style, we have to defined the `flatten`. check this playbook 
+
 
 
 
