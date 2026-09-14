@@ -35,4 +35,9 @@
             state: enabled
             permanent: true
             immediate: true
+
+        - name: Restarting the service
+          ansible.builtin.service:
+            name: httpd
+            state: restarted
       when: ansible_facts['distribution'] == "CentOS"
