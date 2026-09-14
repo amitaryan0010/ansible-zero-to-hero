@@ -1,0 +1,26 @@
+---
+- name: Looping with register and assert
+  hosts: localhost
+  gather_facts: no
+  become: no
+  tasks:
+    - name: Checking multiple directories
+      ansible.builtin.stat:
+        path: "{{ item }}"
+      loop:
+        - /home/ansibleuser
+        - /tmp
+        - /root
+      register: dir_outputs
+
+    - name: Validate that each directory exists and is writable
+      ansible.builtin.assert:
+        that:
+          - item.stat.exists
+          - item.stat.isdir
+          - item.stat.writeable
+        fail_msg: "ALERT: {{ item.item }} is missing or not writable!"
+        success_msg: "SUCCESS: {{ item.item }} is verified and writable!"
+      loop: "{{ dir_outputs.results }}"
+      loop_control:
+       # label: "{{ item.item }}" # Cleans up terminal output to only show the path name

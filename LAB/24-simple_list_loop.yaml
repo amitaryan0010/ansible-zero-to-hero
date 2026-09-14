@@ -12,3 +12,14 @@
         - httpd
         - curl
         - git
+
+    # yum/dnf module is capable of installing multiple packages in one go, but this is just to demonstrate the loop functionality.
+    - name: Ensure multiple packages are installed (alternative method)
+      ansible.builtin.dnf:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+          - httpd
+          - curl
+          - git

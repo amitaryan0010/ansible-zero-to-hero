@@ -82,9 +82,11 @@
 
         check this playbook [29-loop_with_nested.yaml](../LAB/29-loop_with_nested.yaml)
 
+## loop with register and assert
+- When you register a variable on a task that loops, Ansible doesn't overwrite the variable on each iteration. Instead, it creates a special results list inside that variable containing the output of every single item.
+- You can loop through the registered results of the previous task to assert that.
 
-
-
+    check this playbook 
 
 ## Task control with loops 
 - It allows you to manage and track individual loop iterations by pairing structural loop declarations with keywords like loop_control, register, and ignore_errors.
