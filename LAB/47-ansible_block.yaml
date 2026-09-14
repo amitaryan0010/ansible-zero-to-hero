@@ -17,8 +17,11 @@
             name: "{{ package }}"
             state: present
         - name: locking the version of httpd
-          ansible.builtin.lineinfile:
-            dest: "{{ lock_path }}"
-            line:  httpd
+          community.general.dnf_versionlock:
+            name: httpd
             state: present
+          #ansible.builtin.lineinfile:
+            #dest: "{{ lock_path }}"
+            #line:  "httpd-0:2.4.62-14.el9.*"
+            #state: present
       when: ansible_facts['distribution'] == "CentOS"
