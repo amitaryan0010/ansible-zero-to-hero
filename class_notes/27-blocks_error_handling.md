@@ -8,4 +8,4 @@
 - `always`: Tasks defined here will always execute, regardless of whether the tasks in the block succeeded or failed. This is ideal for closing connections, clearing temporary folders, or deleting credentials.
 
 ## DEMO
-- for block, check this playbook 
+- for block, check this playbook [47-ansible_block.yaml](../LAB/47-ansible_block.yaml)

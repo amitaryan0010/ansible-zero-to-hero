@@ -1,0 +1,41 @@
+---
+- name: Learning error handling with block-rescue-always
+  hosts: centos9
+  gather_facts: yes
+  become: yes
+
+  tasks:
+    - name: Application Deployment Block
+      block:
+        - name: Back up current production file
+          ansible.builtin.copy:
+            src: /var/www/html/index.html
+            dest: /var/www/html/index.html.bak
+            remote_src: yes
+          ignore_errors: true # Don't crash if it's a first-time setup with no file
+
+        - name: Deploy the new website layout
+          ansible.builtin.copy:
+            src: files/force_index.html
+            dest: /var/www/html/index.html
+
+        - name: Simulating a critical down-stream deployment crash
+          ansible.builtin.command: /usr/bin/false
+
+      rescue:
+        # This code ONLY triggers because the task above returned a failure status
+        - name: CRITICAL FAILURE DETECTED - Rolling back to baseline snapshot
+          ansible.builtin.copy:
+            src: /var/www/html/index.html.bak
+            dest: /var/www/html/index.html
+            remote_src: yes
+
+        - name: Halt playbook run cleanly after recovery
+          ansible.builtin.fail:
+            msg: "Deployment failed, but system was successfully restored to baseline."
+
+      always:
+        - name: Maintenance Clean Up - Removing temporary backup file
+          ansible.builtin.file:
+            path: /var/www/html/index.html.bak
+            state: absent
