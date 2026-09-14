@@ -7,8 +7,8 @@
   tasks:
     - name: Update web server layout configuration
       ansible.builtin.copy:
-        src: files/httpd.conf
-        dest: /etc/httpd/conf/httpd.conf
+        src: files/index.html
+        dest: /var/www/html/index.html
       notify: Restart Web Server
 
     - name: This task will deliberately fail
