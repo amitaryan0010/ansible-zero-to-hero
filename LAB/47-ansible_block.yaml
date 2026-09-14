@@ -1,0 +1,24 @@
+---
+- name: Learning Ansible Block
+  hosts: localhost
+  gather_facts: yes
+   
+  vars:
+    package:
+      - httpd-2.4.62-14.el9.x86_64
+      - python3-dnf-plugin-versionlock
+    lock_path: /etc/dnf/plugins/versionlock.list
+
+  tasks:
+    - name: Installing webservers and locking the version
+      block:
+        - name: installing webserver and version_lock packages
+          ansible.builtin.dnf:
+            name: "{{ package }}"
+            state: present
+        - name: locking the version of httpd
+          ansible.builtin.lineinfile:
+            dest: "{{ lock_path }}"
+            line:  httpd
+            state: present
+      when: ansible_facts['distribution'] == "RedHat"

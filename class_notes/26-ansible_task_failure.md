@@ -51,4 +51,4 @@
             - docker server: Half-configured or broken.
         - If these two servers are part of a balanced application cluster, your users would experience errors 50% of the time depending on which server the load balancer directed them to. Stopping the playbook immediately alerts your engineering team to fix the issue before the application layer goes out of sync.
 
-    - check this playbook 
+    - check this playbook [46-ansible_any_error_fatal.yaml](../LAB/46-ansible_any_error_fatal.yaml)
