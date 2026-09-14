@@ -11,4 +11,4 @@
     - name: Run a command that is expected to fail
       ansible.builtin.command: /usr/bin/systemctl is-active sshd.service
       register: sshd_output
-      chnaged_when: sshd_output.rc != 0  # This tells Ansible to consider the task failed if the return code is not 0
+      changed_when: sshd_output.rc != 0  # This tells Ansible to consider the task failed if the return code is not 0
