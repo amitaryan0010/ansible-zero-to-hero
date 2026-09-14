@@ -63,8 +63,9 @@
 | **Boolean False** | Validates if a flag is inactive. | `not` | `not output.stat.exists` |
 
 - Demo
-    - For simple when condition, check this playbook [31-ansible_simple_whem.yaml](../LAB/31-ansible_simple_whem.yaml)
-    
+    - For simple when condition, check this playbook [31-ansible_simple_when.yaml](../LAB/31-ansible_simple_when.yaml)
+    - 
+
 
 
 ## Combining Loops And Conditions

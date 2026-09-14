@@ -8,5 +8,4 @@
       ansible.builtin.debug:
         msg: "Hello, I am from {{ ansible_facts['distribution'] }} Family."
       when: 
-        - ansible_facts['distribution'] == "RedHat"
-        - ansible_facts['distribution'] == "CentOS"
+        - ansible_facts['distribution'] == "RedHat" or ansible_facts['distribution'] == "CentOS"
