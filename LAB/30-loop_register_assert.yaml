@@ -23,4 +23,4 @@
         success_msg: "SUCCESS: {{ item.item }} is verified and writable!"
       loop: "{{ dir_outputs.results }}"
       loop_control:
-       # label: "{{ item.item }}" # Cleans up terminal output to only show the path name
+        label: "{{ item.item }}" # Cleans up terminal output to only show the path name
