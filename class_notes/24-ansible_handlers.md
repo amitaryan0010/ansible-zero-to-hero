@@ -21,4 +21,4 @@
 - check this playbook [35-ansible_force_handlers.yaml](../LAB/35-ansible_force_handlers.yaml)
 
 - `Notify Demo`
-    - check this playbook 
+    - check this playbook [36-ansible_notifiy_handlers.yaml](../LAB/36-ansible_notifiy_handlers.yaml)

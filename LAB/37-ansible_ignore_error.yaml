@@ -1,0 +1,13 @@
+---
+- name: Larning Ignore Errors
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Run a cleanup script
+      ansible.builtin.command: /usr/local/bin/cleanup.sh
+      ignore_errors: true  # Playbook keeps running even if this script crashes
+
+    - name: This task will continure to run even if the previous task fails
+      ansible.builtin.debug:
+        msg: "The cleanup script failed, but we are continuing with the playbook."
