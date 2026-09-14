@@ -21,4 +21,4 @@
             dest: "{{ lock_path }}"
             line:  httpd
             state: present
-      when: ansible_facts['distribution'] == "RedHat"
+      when: ansible_facts['distribution'] == "CentOS"
