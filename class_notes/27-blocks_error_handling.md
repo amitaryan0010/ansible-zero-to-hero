@@ -9,3 +9,13 @@
 
 ## DEMO
 - for block, check this playbook [47-ansible_block.yaml](../LAB/47-ansible_block.yaml)
+- for complete combination, check this playbook [48-ansible_block_rescue_always.yaml](../LAB/48-ansible_block_rescue_always.yaml)
+
+#### How different combinations behave
+- Depending on what your playbook requires, you can structure your tasks in three different ways:
+    1. block + rescue (Most Common for Rollbacks)
+        - Use this when you only care about catching errors. If the main tasks work, the playbook moves on. If they fail, your recovery code runs to fix the system.
+    2. block + always (No Error Handling, Just Cleanup)
+        - You can skip rescue completely if you don't need to fix errors but absolutely must run a cleanup task at the end (like deleting a password file you used during execution).
+    3. block + rescue + always (The Full Lifecycle)
+        - This uses all three layers: Try the task --> Fix it if it breaks --> Clean up the workspace when done.
