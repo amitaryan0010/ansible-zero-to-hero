@@ -80,6 +80,8 @@
         - item[0]: The active item from the first list.
         - item[1]: The active item from the second list.
 
+        check this playbook [29-loop_with_nested.yaml](../LAB/29-loop_with_nested.yaml)
+
 
 
 

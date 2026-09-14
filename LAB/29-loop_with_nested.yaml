@@ -22,7 +22,7 @@
         - "{{ usernames }}"
 
 - name: Learning with_nested as new style loop
-  hosts: centos
+  hosts: centos9
   gather_facts: no
   vars:
     storage_directories:
