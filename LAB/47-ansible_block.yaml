@@ -36,6 +36,11 @@
             permanent: true
             immediate: true
 
+        - name: updating web layout
+          ansible.builtin.lineinfile:
+            dest: /var/www/html/index.html
+            line: WELCOME To CentOS9 Web Server
+
         - name: Restarting the service
           ansible.builtin.service:
             name: httpd
