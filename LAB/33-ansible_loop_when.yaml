@@ -13,4 +13,4 @@
         - item.fstype == "xfs"
         - item.size_available > ('5GB' | human_to_bytes)
       loop_control:
-        label: "{{ item.mount }}"     
+        label: "{{ item.mount }}"

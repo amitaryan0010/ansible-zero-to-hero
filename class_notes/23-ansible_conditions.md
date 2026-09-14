@@ -66,8 +66,6 @@
     - For simple when condition, check this playbook [31-ansible_simple_when.yaml](../LAB/31-ansible_simple_when.yaml)
     - For Ansible fact with condition, check this playbook [32-ansible_fact_when.yaml](../LAB/32-ansible_fact_when.yaml)
 
-
-
 ## Combining Loops And Conditions
 - When you combine loop and when in the same Ansible task, the conditional check is evaluated separately for every single iteration in the loop.
 - Ansible does not skip the entire task if the condition fails. Instead, it inspects each item one by one: it executes the task for items that evaluate to true, and cleanly skips items that evaluate to false.
@@ -81,3 +79,8 @@
               │
               └──> Item 2: Does it match the 'when' condition?
                       └──> ... (Repeats for all remaining items)
+
+- For Ansible fact with loop and condition, check this playbook [33-ansible_loop_when.yaml](../LAB/33-ansible_loop_when.yaml)
+
+## Condtion on basis of previous command output
+- Let say, we want to execute the next task only when the previous task is executed successfully and then basis of condition, I want to execute the next task.
