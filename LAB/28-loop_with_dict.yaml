@@ -19,7 +19,7 @@
       with_dict: "{{ users }}"
 
 - name: Learning with_dict as new style loop
-  hosts: centos9
+  hosts: localhost
   gather_facts: no
 
   vars:

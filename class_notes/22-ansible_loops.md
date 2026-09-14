@@ -74,6 +74,12 @@
         - item.key: The name of the dictionary key string.
         - item.value: The configuration values grouped underneath that key.
 
+        check this playbook [28_loop_with_dict.yaml](../LAB/28_loop_with_dict.yaml)
+
+    - `with_nested` : Also called, Matrix / Nested Loops. Ansible will loop through the second list completely for every single item in the first list. You access them in sequence order:
+        - item[0]: The active item from the first list.
+        - item[1]: The active item from the second list.
+
 
 
 

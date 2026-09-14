@@ -1,0 +1,38 @@
+---
+- name: Learning with_nested as old style loop
+  hosts: localhost
+  gather_facts: no
+
+  vars:
+    storage_directories:
+      - /tmp/san_storage
+      - /tmp/backup_drive
+    usernames:
+     - sam
+     - alice
+
+  tasks:
+    - name: Create user directories across all storage targets
+      ansible.builtin.file:
+        path: "{{ item[0] }}/{{ item[1] }}"
+        state: directory
+        mode: '0755'
+      with_nested:
+        - "{{ storage_directories }}"
+        - "{{ usernames }}"
+
+- name: Learning with_nested as new style loop
+  hosts: centos
+  gather_facts: no
+  vars:
+    storage_directories:
+      - /tmp/san_storage
+      - /tmp/backup_drive
+    usernames:
+     - sam
+     - alice
+  tasks:
+    - name: Create user directories across all storage targets
+      ansible.builtin.debug:
+        msg: "Creating folder path: {{ item[0] }}/{{ item[1] }}"
+      loop: "{{ storage_directories | product(usernames) | list }}"
