@@ -1,0 +1,19 @@
+---
+- name: Learning Simple When Conditional
+  hosts: all
+  gather_facts: no
+
+  vars:
+    champ: true
+
+  tasks:
+    - name: Display message when local variable is defined and true
+      ansible.builtin.debug:
+        msg: "You are learning Ansible on a RedHat based system."
+      when: champ == "true"
+
+    - name: Display message when ansible_os_family is not RedHat
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
+      when: inventory_hostname == "localhost"

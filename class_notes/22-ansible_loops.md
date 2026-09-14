@@ -86,8 +86,9 @@
 - When you register a variable on a task that loops, Ansible doesn't overwrite the variable on each iteration. Instead, it creates a special results list inside that variable containing the output of every single item.
 - You can loop through the registered results of the previous task to assert that.
 
-    check this playbook 
+    check this playbook [30-loop_register_assert.yaml](../LAB/30-loop_register_assert.yaml)
 
 ## Task control with loops 
 - It allows you to manage and track individual loop iterations by pairing structural loop declarations with keywords like loop_control, register, and ignore_errors.
 - By default, when looping through a large list, Ansible's terminal output can become messy, tracking variables can get overwritten, and a single loop item failure will crash the entire task. Task control properties resolve these challenges.
+- So in simple words, loop_control is a tuning modifier that gives you control over how a loop behaves and prints information to your screen.
