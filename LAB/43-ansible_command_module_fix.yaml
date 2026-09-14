@@ -1,0 +1,14 @@
+---
+- name: Learning Command Module Behavior
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Run a command to read the disks
+      ansible.builtin.command:  /usr/bin/df
+      changed_when: false  # This tells Ansible that this command does not change the system state
+
+    - name: Run a command that is expected to fail
+      ansible.builtin.command: /usr/bin/systemctl is-active sshd.service
+      register: sshd_output
+      chnaged_when: sshd_output.rc != 0  # This tells Ansible to consider the task failed if the return code is not 0

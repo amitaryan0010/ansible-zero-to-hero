@@ -1,0 +1,8 @@
+---
+- name: Learning Command Module Behavior
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Run a command to read the disks
+      ansible.builtin.command:  /usr/bin/df
