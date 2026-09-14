@@ -1,0 +1,12 @@
+---
+- name: Learning Fact when condition
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: Display ansible local fact
+      ansible.builtin.debug:
+        msg: "Hello, I am from {{ ansible_facts['distribution'] }} Family."
+      when: 
+        - ansible_facts['distribution'] == "RedHat"
+        - ansible_facts['distribution'] == "CentOS"

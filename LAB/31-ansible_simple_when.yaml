@@ -18,7 +18,7 @@
         msg: "You are Awesome!!."
       when: not giver
 
-    - name: Display message when ansible_os_family is not RedHat
+    - name: Install httpd package on localhost when inventory_hostname is localhost
       ansible.builtin.dnf:
         name: httpd
         state: present
