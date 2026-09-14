@@ -1,16 +1,16 @@
 ---
 - name: Learning with_dict as old style loop
-  hosts: centos9
+  hosts: localhost
   gather_facts: no
 
   vars:
-  users:
-    sam:
-      phone: "555-0122"
-      department: "automation"
-    alice:
-      phone: "555-0199"
-      department: "security"
+    users:
+      sam:
+        phone: "555-0122"
+        department: "automation"
+      alice:
+        phone: "555-0199"
+        department: "security"
 
   tasks:
     - name: Display user information
@@ -23,13 +23,13 @@
   gather_facts: no
 
   vars:
-  users:
-    sam:
-      phone: "555-0122"
-      department: "automation"
-    alice:
-      phone: "555-0199"
-      department: "security"
+    users:
+      sam:
+        phone: "555-0122"
+        department: "automation"
+      alice:
+        phone: "555-0199"
+        department: "security"
 
   tasks:
     - name: Display user information

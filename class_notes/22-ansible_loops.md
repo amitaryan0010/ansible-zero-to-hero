@@ -1,4 +1,4 @@
-# TASK Control
+# Ansible Loop
 - An Ansible loop allows you to repeat a single task multiple times with different values, rather than duplicating the task block over and over.
 - In modern Ansible, the universal keyword loop is the standard way to iterate over a list of items, strings, or dictionaries.
 - We have many lookup plugins available in ansible which can help to go through or iterate the input or output.
@@ -63,16 +63,21 @@
 
     - We will discuss the other plugins later, as of now let us focus on `items` which can iterate the list of items and pass it to loop.
 
-    - For example, let say, we need to create a bunch of users, we know, we can use `users` module to achieve the same, or to install number of packages via `dnf` or other OS specific modules, or need to start/check the status of services but we need to write the dedicated task for each user creation/package install/service stattus and that is where the actual problem starts. Now, the playbook will be messy, error prone, hard to manage. So we use a `loop` with `with_items`.
-- loop vs Legacy with_items
-    - You might see older playbooks using keywords like with_items, with_dict, with_nested or with_sequence. While they still work, loop is the modern best practice.Use loop for simple lists and list variables.
+    - For example, let say, we need to create a bunch of users, we know, we can use `users` module to achieve the same, or to install number of packages via `dnf` or other OS specific modules, or need to start/check the status of services but we need to write the dedicated task for each user creation/package install/service stattus and that is where the actual problem starts. Now, the playbook will be messy, error prone, hard to manage. So we use a `loop` with other plugins or new modern approach.
 
-    - `with_items` : The with_items keyword is a legacy loop directive in Ansible that iterates over a list of items. Its unique characteristic is that it automatically flattens nested lists but with nwe style, we have to defined the `flatten`. check this playbook 
+### loop vs Legacy syles
+- You might see older playbooks using keywords like with_items, with_dict, with_nested or with_sequence. While they still work, loop is the modern best practice.Use loop for simple lists and list variables.
+
+    - `with_items` : The with_items keyword is a legacy loop directive in Ansible that iterates over a list of items. Its unique characteristic is that it automatically flattens nested lists but with nwe style, we have to defined the `flatten`. check this playbook [27-loop_with_items.yaml](../LAB/27-loop_with_items.yaml)
+
+    - `with_dict` : when your data is formatted as a hash table/dictionary rather than a standard item list. During execution, it breaks the dictionary apart and provides two properties: 
+        - item.key: The name of the dictionary key string.
+        - item.value: The configuration values grouped underneath that key.
 
 
 
 
 
-- Task control with loops 
-    - It allows you to manage and track individual loop iterations by pairing structural loop declarations with keywords like loop_control, register, and ignore_errors.
-    - By default, when looping through a large list, Ansible's terminal output can become messy, tracking variables can get overwritten, and a single loop item failure will crash the entire task. Task control properties resolve these challenges.
+## Task control with loops 
+- It allows you to manage and track individual loop iterations by pairing structural loop declarations with keywords like loop_control, register, and ignore_errors.
+- By default, when looping through a large list, Ansible's terminal output can become messy, tracking variables can get overwritten, and a single loop item failure will crash the entire task. Task control properties resolve these challenges.
