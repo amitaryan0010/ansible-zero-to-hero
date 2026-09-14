@@ -5,12 +5,18 @@
 
   vars:
     champ: true
+    giver: false
 
   tasks:
     - name: Display message when local variable is defined and true
       ansible.builtin.debug:
         msg: "You are learning Ansible on a RedHat based system."
-      when: champ == "true"
+      when: champ
+
+    - name: Display message when local variable is defined and false
+      ansible.builtin.debug:
+        msg: "You are Awesome!!."
+      when: not giver
 
     - name: Display message when ansible_os_family is not RedHat
       ansible.builtin.dnf:
