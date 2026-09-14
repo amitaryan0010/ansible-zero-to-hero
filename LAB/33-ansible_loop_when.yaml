@@ -1,7 +1,7 @@
 ---
 - name: Learning loop with when condition
   hosts: centos9
-  gather_facts: no
+  gather_facts: yes
 
   tasks:
     - name: Pre-Check before yum_update
