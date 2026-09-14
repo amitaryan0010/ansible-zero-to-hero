@@ -1,5 +1,5 @@
 ---
-- name: Learning Ansible Handlers
+- name: Learning Ansible forcefully Handlers
   hosts: localhost
   gather_facts: no
   #force_handlers: yes  # <-- Forces handlers to run even if tasks below fail!
@@ -7,8 +7,15 @@
   tasks:
     - name: Update web server layout configuration
       ansible.builtin.copy:
-        src: files/index.html
-        dest: /var/www/html/index.html
+        src: files/force_index.html
+        dest: /var/www/html/new.html
+        backup: yes
+
+    - name: Update web server layout configuration
+      ansible.builtin.lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: "DirectoryIndex index.html"
+        line: "DirectoryIndex new.html"
       notify: Restart Web Server
 
     - name: This task will deliberately fail

@@ -18,3 +18,7 @@
 - `force_handlers: yes`
 - This keyword is a global playbook setting that forces Ansible to run your triggered handlers even if a task fails later in the playbook.
 - By default, Ansible values safety above all else. If a task crashes halfway through a play, Ansible will instantly halt execution for that host and discard all queued handlers, leaving services un-restarted to prevent bringing a half-configured system online. force_handlers changes this default behavior.
+- check this playbook [35-ansible_force_handlers.yaml](../LAB/35-ansible_force_handlers.yaml)
+
+- `Notify Demo`
+    - check this playbook 

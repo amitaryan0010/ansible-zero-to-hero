@@ -1,0 +1,25 @@
+---
+- name: Learning Notify and Handlers
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Update the Configuration of SSHD
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: "PermitRootLogin yes"
+        line: "PermitRootLogin no"
+      notify:
+        - restart sshd
+
+    #- name: Flush handlers right now
+    #  ansible.builtin.meta: flush_handlers
+
+    - name: This task will deliberately fail
+      ansible.builtin.command: /usr/bin/false
+
+  handlers:
+    - name: restart sshd
+      ansible.builtin.systemd:
+        name: sshd
+        state: restarted
