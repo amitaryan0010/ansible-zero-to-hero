@@ -24,9 +24,9 @@
 
           # run with ansible-navigator run  
           #ansible.builtin.lineinfile:
-          #dest: "{{ lock_path }}"
-          #line:  "httpd-0:2.4.62-14.el9.*"
-          #state: present
+            #dest: "{{ lock_path }}"
+            #line:  "httpd-0:2.4.62-14.el9.*"
+            #state: present
 
         - name: Updating the firewall configuration
           ansible.posix.firewalld:
