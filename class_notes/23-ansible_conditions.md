@@ -64,7 +64,7 @@
 
 - Demo
     - For simple when condition, check this playbook [31-ansible_simple_when.yaml](../LAB/31-ansible_simple_when.yaml)
-    - 
+    - For Ansible fact with condition, check this playbook [32-ansible_fact_when.yaml](../LAB/32-ansible_fact_when.yaml)
 
 
 

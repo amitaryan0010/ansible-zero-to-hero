@@ -1,0 +1,14 @@
+---
+- name: Learning loop with when condition
+  hosts: centos9
+  gather_facts: no
+
+  tasks:
+    - name: Pre-Check before yum_update
+      ansible.builtin.debug:
+        msg: "welcome to {{ inventory_hostname }}. I am checking the root partition size and filesystem type before yum update."
+      loop: "{{ ansible_mounts }}"
+      when:
+        - item.mount == "/"
+        - item.fstype == "xfs"
+        - item.size_available > ('5GB' | human_to_bytes)
