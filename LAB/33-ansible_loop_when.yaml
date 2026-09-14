@@ -7,7 +7,7 @@
     - name: Pre-Check before yum_update
       ansible.builtin.debug:
         msg: "welcome to {{ inventory_hostname }}. I am checking the root partition size and filesystem type before yum update."
-      loop: "{{ ansible_facts['mounts']['0'] }}"
+      loop: "{{ ansible_mounts }}"
       when:
         - item.mount == "/"
         - item.fstype == "xfs"
