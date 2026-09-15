@@ -5,6 +5,6 @@
 
   tasks:
     - name: Copyin the file
-      ansible.builtin.file:
+      ansible.builtin.copy:
         src: files/master_info.txt
         dest: /root/
