@@ -6,7 +6,7 @@
   tasks:
     - name: Finding log files older than 7 days
       ansible.builtin.find:
-        paths: /var/log/myapp
+        paths: /var/log/
         patterns: '*.log'
         age: 7d
       register: old_logs
