@@ -1,6 +1,6 @@
 ---
 - name: Learning fetch module
-  hosts: target_host
+  hosts: target_node
   gather_facts: no
   
   tasks:
