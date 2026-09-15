@@ -13,5 +13,6 @@
 
     - name: display files
       ansible.builtin.debug:
-        msg: "{{ old_logs.files.path }}"
+        msg: "Found file: {{ item.path }}"
+      loop: "{{ old_logs.files }}"
 
