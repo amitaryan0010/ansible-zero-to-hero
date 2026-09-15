@@ -12,4 +12,4 @@
           Kubernetes
           Cloud
           RedHat Linux
-        marker: "- {mark} ANSIBLE MANAGED LOCAL HOSTS"
+        #marker: "- {mark} ANSIBLE MANAGED LOCAL HOSTS"
