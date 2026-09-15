@@ -8,4 +8,4 @@
       ansible.builtin.fetch:
         src: /var/log/messages
         dest: /tmp/{{ inventory_hostname }}.log
-        flat: no
+        flat: yes
