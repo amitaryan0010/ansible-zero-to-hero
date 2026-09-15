@@ -6,6 +6,7 @@
   # CREATE DUMMY FILES FOR THIS DEMO
   # mkdir test_files ; cd test_files
   # for i in {1..20}; do fallocate -l 50M "file_$i.img"; done
+  # cd ..
 
   # FIRST RUN WITH COPY MODULE AND COPY first 10 files and notice the time
   # time ansible-playbook 57-synchronize_module.yaml --tags "run_copy"
@@ -27,3 +28,7 @@
         dest: /tmp
       loop: "{{ range(11, 20) | list }}"
       tags: run_sync
+
+  # CLEAN UP
+  # ansible target_node -m shell -a "rm /tmp/file*.img"
+  # rm -rf test_files

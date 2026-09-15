@@ -1,0 +1,13 @@
+---
+- name: Learning assemble module
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Assemble all sudo rules into the final configuration file
+      ansible.builtin.assemble:
+        src: /etc/sudoers.d/
+        dest: /tmp/final_sudo
+        owner: root
+        group: root
+        mode: '0600'

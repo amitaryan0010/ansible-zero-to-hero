@@ -29,7 +29,7 @@
     - check this playbook [56-find_module.yaml](../LAB/56-find_module.yaml)
 - ansible.posix.synchronize:
     - A wrapper around the rsync tool. If you need to transfer hundreds of files or massive directories, synchronize is significantly faster and more efficient than the basic copy module.
-    
+    - check this playbook [57-synchronize_module.yaml](../LAB/57-synchronize_module.yaml)
 
 - ansible.builtin.assemble:
     - Takes multiple file fragments scattered across a directory on the managed host and stitches them together into one large unified file.
