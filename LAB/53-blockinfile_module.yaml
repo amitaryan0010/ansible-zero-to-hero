@@ -9,7 +9,7 @@
         path: /root/master_info.txt 
         block: |
           More Courses available:
-          Kubernetes
-          Cloud
-          RedHat Linux
-        #marker: "- {mark} ANSIBLE MANAGED LOCAL HOSTS"
+          - Kubernetes
+          - Cloud
+          - RedHat Linux
+        marker: "- {mark} ANSIBLE MANAGED LOCAL HOSTS"
