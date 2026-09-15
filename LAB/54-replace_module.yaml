@@ -1,0 +1,11 @@
+---
+- name: Learning replace module
+  hosts: target_node
+  gather_facts: no
+
+  tasks:
+    - name: updating course details
+      ansible.builtin.replace:
+        path: /root/master_info.txt
+        regexp: '^- Cloud'
+        replace: '- Cloud (AWS/Azure/GCP/Oracle)'
