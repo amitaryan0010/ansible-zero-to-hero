@@ -9,6 +9,9 @@
         path: /var/log/messages
       register: log_status
 
+    - debug:
+        var: log_status
+
     - name: displaying the file status
       ansible.builtin.assert:
         that: "'file' in log_status.stdout.mimetype"
