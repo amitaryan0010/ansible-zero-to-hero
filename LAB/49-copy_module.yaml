@@ -1,0 +1,10 @@
+---
+- name: Copying file from Master to target nodes
+  hosts: target_nodes
+  become: yes
+
+  tasks:
+    - name: Copyin the file
+      ansible.builtin.file:
+        src: files/master_info.txt
+        dest: /root/
