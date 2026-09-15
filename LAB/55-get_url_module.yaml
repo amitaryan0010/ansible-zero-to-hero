@@ -1,0 +1,13 @@
+---
+- name: Learning get_url module
+  hosts: target_node
+  gather_facts: no
+
+  tasks:
+    - name: Download a Azure RHUI package
+      ansible.builtin.get_url:
+        url: https://rhui-3.microsoft.com/pulp/content/unprotected/microsoft-azure-rhel7/Packages/r/rhui-azure-rhel7-2.3-916.noarch.rpm
+        dest: /tmp/
+        mode: '0755'
+
+
