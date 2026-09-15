@@ -5,6 +5,7 @@
   
   tasks:
     - name: fetching the log file
-      src: /var/log/messages
-      dest: /tmp/log-{{ inventory_host }}
-      flat: no
+      ansible.builtin.fetch:
+        src: /var/log/messages
+        dest: /tmp/{{ inventory_host }}.log
+        flat: no
