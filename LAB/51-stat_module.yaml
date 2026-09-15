@@ -6,7 +6,7 @@
   tasks:
     - name: fetching the log file
       ansible.builtin.stat:
-        src: /var/log/messages
+        path: /var/log/messages
         register: log_status
 
     - name: displaying the file status
