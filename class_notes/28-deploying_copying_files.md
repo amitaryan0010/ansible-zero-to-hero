@@ -7,12 +7,14 @@
     - check this playbook [49-copy_module.yaml](../LAB/49-copy_module.yaml)
 - ansible.builtin.fetch: 
     - The exact opposite of copy. It pulls files from the remote managed hosts back onto your local control machine.
+    - check this playbook [50-fetch_module.yaml](../LAB/50-fetch_module.yaml)
+- ansible.builtin.stat:
+    - Retrieves file or file system status data (like the Linux stat command). It tells you if a file exists, its size, its MD5 checksum, its owner, etc.
+    - check this playbook 
 - ansible.builtin.file:
     - Used to manage file properties. It sets permissions (chmod), ownership (chown), creates symlinks, creates empty directories, or deletes files/directories.
 - ansible.builtin.blockinfile:
     - Inserts, updates, or removes a multi-line block of text. It wraps the text block in marker lines (e.g., # BEGIN ANSIBLE MANAGED BLOCK) so it knows exactly what to modify later.
-- ansible.builtin.stat:
-    - Retrieves file or file system status data (like the Linux stat command). It tells you if a file exists, its size, its MD5 checksum, its owner, etc.
 - ansible.builtin.template: 
     - Crucial. Instead of just copying a static file, this module takes a dynamic file written with Jinja2 templating. It swaps out variables (like IP addresses, hostnames, or custom settings) on the fly before sending the finalized configuration file to the managed host.
 - ansible.builtin.replace: 

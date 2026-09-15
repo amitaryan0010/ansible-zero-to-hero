@@ -1,0 +1,16 @@
+---
+- name: Learning stat module
+  hosts: target_node
+  gather_facts: no
+  
+  tasks:
+    - name: fetching the log file
+      ansible.builtin.stat:
+        src: /var/log/messages
+        register: log_status
+
+    - name: displaying the file status
+      ansible.builtin.assert:
+        that: "'file' in log_status.stdout.mimetype"
+        fail_msg: "messages file is not present"
+        success_msg: "message file is present"

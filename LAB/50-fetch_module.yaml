@@ -9,3 +9,6 @@
         src: /var/log/messages
         dest: /tmp/{{ inventory_hostname }}.log
         flat: yes
+      # With flat: no (Default): Ansible creates a full path to prevent overwriting, resulting in: /tmp/log-{{ inventory_hostname }}/<remote-hostname-here>/var/log/messages
+      
+      # With flat: yes: Ansible ignores the remote directory structure and drops the file directly into /tmp, naming the file itself log-{{ inventory_hostname }}.
