@@ -15,4 +15,6 @@
       ansible.builtin.debug:
         msg: "Found file: {{ item.path }}"
       loop: "{{ old_logs.files }}"
+      loop_control:
+        label: "{{ item.path }}"
 
