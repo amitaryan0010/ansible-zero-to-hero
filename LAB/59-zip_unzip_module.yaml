@@ -1,0 +1,19 @@
+---
+- name: Zip locally and deploy to target nodes
+  hosts: centos9
+  gather_facts: no
+
+  tasks:
+    - name: Compress the LAB folder on the control node
+      community.general.archive:
+        path: /home/ansibleuser/ansible-zero-to-hero/LAB
+        dest: /home/ansibleuser/ansible-zero-to-hero/LAB_backup.zip
+        format: zip
+      delegate_to: localhost
+      run_once: true  # Prevents Ansible from running this local zip task multiple times if you have multiple hosts
+
+    - name: Distribute and extract the archive on target hosts
+      ansible.builtin.unarchive:
+        src: /home/ansibleuser/ansible-zero-to-hero/LAB_backup.zip
+        dest: /tmp/
+        remote_src: no # Tells Ansible to copy the zip from the control node to the targets
