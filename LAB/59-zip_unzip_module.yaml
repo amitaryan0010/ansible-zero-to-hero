@@ -1,6 +1,6 @@
 ---
 - name: Zip locally and deploy to target nodes
-  hosts: centos9
+  hosts: target_node
   gather_facts: no
 
   tasks:
@@ -18,5 +18,5 @@
         dest: /tmp/
         owner: ansibleuser  # Automatically applies ownership to all extracted files.
         group: ansibleuser
-        mode: '0644'
+        mode: '0755'
         remote_src: no # Tells Ansible to copy the zip from the control node to the targets
