@@ -7,14 +7,14 @@
     - name: Compress the LAB folder on the control node
       community.general.archive:
         path: /home/ansibleuser/ansible-zero-to-hero/LAB
-        dest: /home/ansibleuser/ansible-zero-to-hero/LAB_backup.zip
-        format: zip
+        dest: /home/ansibleuser/ansible-zero-to-hero/LAB_backup.tar.gz 
+        format: gz
       delegate_to: localhost
       run_once: true  # Prevents Ansible from running this local zip task multiple times if you have multiple hosts
 
     - name: Distribute and extract the archive on target hosts
       ansible.builtin.unarchive:
-        src: /home/ansibleuser/ansible-zero-to-hero/LAB_backup.zip
+        src: /home/ansibleuser/ansible-zero-to-hero/LAB_backup.tar.gz
         dest: /tmp/
         owner: ansibleuser  # Automatically applies ownership to all extracted files.
         group: ansibleuser
