@@ -3,13 +3,27 @@
   hosts: target_node
   gather_facts: no
 
+  # CREATE DUMMY FILES FOR THIS DEMO
+  # mkdir test_files ; cd test_files
+  # for i in {1..20}; do fallocate -l 50M "file_$i.img"; done
+
+  # FIRST RUN WITH COPY MODULE AND COPY first 10 files and notice the time
+  # time ansible-playbook 57-synchronize_module.yaml --tags "run_copy"
+  
   tasks:
     - name: Copying the file with copy module
       ansible.builtin.copy:
-        src: /home/ansibleuser/ansible-zero-to-hero/LAB/test_files
+        src: /home/ansibleuser/ansible-zero-to-hero/LAB/test_files/file_{{ item }}.img
         dest: /tmp
-    # dd status=progress if=/dev/zero of=file5.img bs=1M count=500    
-    #- name: Synchronize a large website assets folder to the host
-    #  ansible.posix.synchronize:
-    #    src: /local/workspace/website/assets/
-    #    dest: /var/www/html/assets/
+      loop: "{{ range(1, 10) | list }}"
+      tags: run_copy
+
+  # SECOND RUN WITH SYMCHRONIZE MODULE AND COPY next 10 files and notice the time
+  # time ansible-playbook 57-synchronize_module.yaml --tags "run_sync"
+
+    - name: Copying the file with synchronize module
+      ansible.posix.synchronize:
+        src: /home/ansibleuser/ansible-zero-to-hero/LAB/test_files/file_{{ item }}.img
+        dest: /tmp
+      loop: "{{ range(11, 20) | list }}"
+      tags: run_sync
