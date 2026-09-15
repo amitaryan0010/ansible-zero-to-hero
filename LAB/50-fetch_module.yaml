@@ -7,5 +7,5 @@
     - name: fetching the log file
       ansible.builtin.fetch:
         src: /var/log/messages
-        dest: /tmp/{{ inventory_host }}.log
+        dest: /tmp/{{ inventory_hostname }}.log
         flat: no
