@@ -26,10 +26,10 @@
     - check this playbook [55-get_url_module.yaml](../LAB/55-get_url_module.yaml)
 - ansible.builtin.find:
     - Returns a list of files on the managed host based on specific criteria like date modified, file size, or file extension patterns.
-    
+    - check this playbook [56-find_module.yaml](../LAB/56-find_module.yaml)
 - ansible.posix.synchronize:
     - A wrapper around the rsync tool. If you need to transfer hundreds of files or massive directories, synchronize is significantly faster and more efficient than the basic copy module.
-
+    
 
 - ansible.builtin.assemble:
     - Takes multiple file fragments scattered across a directory on the managed host and stitches them together into one large unified file.

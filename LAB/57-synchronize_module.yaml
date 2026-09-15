@@ -1,0 +1,15 @@
+---
+- name: Learning Synchronize module
+  hosts: target_node
+  gather_facts: no
+
+  tasks:
+    - name: Copying the file with copy module
+      ansible.builtin.copy:
+        src: /home/ansibleuser/ansible-zero-to-hero/LAB/test_files
+        dest: /tmp
+    # dd status=progress if=/dev/zero of=file5.img bs=1M count=500    
+    #- name: Synchronize a large website assets folder to the host
+    #  ansible.posix.synchronize:
+    #    src: /local/workspace/website/assets/
+    #    dest: /var/www/html/assets/
