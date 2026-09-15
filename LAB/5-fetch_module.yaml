@@ -1,0 +1,10 @@
+---
+- name: Learning fetch module
+  hosts: target_host
+  gather_facts: no
+  
+  tasks:
+    - name: fetching the log file
+      src: /var/log/messages
+      dest: /tmp/log-{{ inventory_host }}
+      flat: no

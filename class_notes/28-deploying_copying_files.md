@@ -4,6 +4,7 @@
 ### The Core Modules 
 - ansible.builtin.copy: 
     - Copies files from your local control machine directly to the managed hosts. It can also write text content directly into a remote file using the content parameter.
+    - check this playbook [49-copy_module.yaml](../LAB/49-copy_module.yaml)
 - ansible.builtin.fetch: 
     - The exact opposite of copy. It pulls files from the remote managed hosts back onto your local control machine.
 - ansible.builtin.file:

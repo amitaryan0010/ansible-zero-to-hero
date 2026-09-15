@@ -1,6 +1,7 @@
 ---
 - name: Copying file from Master to target nodes
   hosts: target_node
+  gather_facts: no
   become: yes
 
   tasks:
