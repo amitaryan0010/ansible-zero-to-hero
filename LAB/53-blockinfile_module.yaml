@@ -1,0 +1,15 @@
+---
+- name: Learning blockinfile module
+  hosts: target_node
+  gather_facts: no
+
+  tasks:
+    - name: Add local host mappings to the /etc/hosts file
+      ansible.builtin.blockinfile:
+        path: /root/master_info.txt 
+        block: |
+          More Courses available:
+          Kubernetes
+          Cloud
+          RedHat Linux
+        marker: "- {mark} ANSIBLE MANAGED LOCAL HOSTS"

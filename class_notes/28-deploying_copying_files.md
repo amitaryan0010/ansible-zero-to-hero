@@ -13,9 +13,10 @@
     - check this playbook [51-stat_module.yaml](../LAB/51-stat_module.yaml)
 - ansible.builtin.file:
     - Used to manage file properties. It sets permissions (chmod), ownership (chown), creates symlinks, creates empty directories, or deletes files/directories.
-    - check this playbbok []
+    - check this playbbok [52-file_module.yaml](../LAB/52-file_module.yaml)
 - ansible.builtin.blockinfile:
     - Inserts, updates, or removes a multi-line block of text. It wraps the text block in marker lines (e.g., # BEGIN ANSIBLE MANAGED BLOCK) so it knows exactly what to modify later.
+    - check this playbook 
 - ansible.builtin.template: 
     - Crucial. Instead of just copying a static file, this module takes a dynamic file written with Jinja2 templating. It swaps out variables (like IP addresses, hostnames, or custom settings) on the fly before sending the finalized configuration file to the managed host.
 - ansible.builtin.replace: 
