@@ -1,0 +1,17 @@
+---
+- name: Learning find module
+  hosts: target_node
+  gather_facts: no
+
+  tasks:
+    - name: Finding log files older than 7 days
+      ansible.builtin.find:
+        paths: /var/log/myapp
+        patterns: '*.log'
+        age: 7d
+      register: old_logs
+
+    - name: display files
+      ansible.builtin.debug:
+        var: old_logs
+
