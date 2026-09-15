@@ -1,0 +1,13 @@
+---
+- name: Learning file module
+  hosts: target_node
+  gather_facts: no
+
+  tasks:
+    - name: Ensure the web app directory exists with correct permissions
+      ansible.builtin.file:
+        path: /tmp/ansible-backup
+        state: directory
+        owner: path4cloud
+        group: path4cloud
+        mode: '0755'

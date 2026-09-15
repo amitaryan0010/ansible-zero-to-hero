@@ -10,9 +10,10 @@
     - check this playbook [50-fetch_module.yaml](../LAB/50-fetch_module.yaml)
 - ansible.builtin.stat:
     - Retrieves file or file system status data (like the Linux stat command). It tells you if a file exists, its size, its MD5 checksum, its owner, etc.
-    - check this playbook 
+    - check this playbook [51-stat_module.yaml](../LAB/51-stat_module.yaml)
 - ansible.builtin.file:
     - Used to manage file properties. It sets permissions (chmod), ownership (chown), creates symlinks, creates empty directories, or deletes files/directories.
+    - check this playbbok []
 - ansible.builtin.blockinfile:
     - Inserts, updates, or removes a multi-line block of text. It wraps the text block in marker lines (e.g., # BEGIN ANSIBLE MANAGED BLOCK) so it knows exactly what to modify later.
 - ansible.builtin.template: 
