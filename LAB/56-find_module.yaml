@@ -13,5 +13,5 @@
 
     - name: display files
       ansible.builtin.debug:
-        var: old_logs
+        msg: {{ old_logs.files.path }}
 
