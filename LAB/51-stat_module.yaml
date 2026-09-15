@@ -7,7 +7,7 @@
     - name: fetching the log file
       ansible.builtin.stat:
         path: /var/log/messages
-        register: log_status
+      register: log_status
 
     - name: displaying the file status
       ansible.builtin.assert:
