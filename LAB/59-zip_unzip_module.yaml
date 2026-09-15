@@ -16,4 +16,7 @@
       ansible.builtin.unarchive:
         src: /home/ansibleuser/ansible-zero-to-hero/LAB_backup.zip
         dest: /tmp/
+        owner: ansibleuser  # Automatically applies ownership to all extracted files.
+        group: ansibleuser
+        mode: '0644'
         remote_src: no # Tells Ansible to copy the zip from the control node to the targets
