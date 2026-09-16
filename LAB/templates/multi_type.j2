@@ -2,3 +2,8 @@
 {% for user in list_users %}
 {{ user }}
 {% endfor %}
+
+## New list with IF Condition
+{% for user in list_users if not user == 'root' %}
+User {{ loop.index }} : {{ user }}
+{% endfor %}
