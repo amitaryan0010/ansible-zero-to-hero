@@ -15,6 +15,12 @@ User {{ loop.index }} : {{ user }}
 
 ## targetNode Hosts Information
 Hostname : IP
-{% for my_host in groups['target_node'] %}
-{{ my_host }} : {{ hostvars[my_host]['ansible_default_ipv4']['address'] | default('IP Unknown (Facts not gathered)') }}
+%- {{ "%-15s : %s" | format("Hostname", "IP") }}
+{% for my_host in groups['target_node'] -%}
+{{ "%-15s : %s" | format(my_host, hostvars[my_host]['ansible_default_ipv4']['address'] | default('Unknown')) }}
 {% endfor %}
+
+{# %-15s (Fixed-Width Formatting): This is a standard string formatting expression. It means: "Reserve a block of exactly 15 characters for this string, and align it to the left." If the hostname is docker (6 characters), it adds 9 trailing spaces automatically to pad the column out to 15. #}
+
+{# The format(...) Filter: This passes your variable values (my_host and the IP address) directly into those fixed-width columns. #}
+{# White-space stripping ({%- and -%}): Adding a minus sign (-) right next to the percentage brackets tells Jinja2 to completely strip out any invisible trailing newlines or blank carriage returns created by the structural looping block itself. This prevents unexpected blank lines from ruining your file formatting. #}
