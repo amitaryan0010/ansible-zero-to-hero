@@ -2,3 +2,5 @@ packages:
   - telnet
 course_name:
   - "Ansible Automation"
+
+ansible_managed: "Ansible managed: modified on {{ now(fmt='%Y-%m-%d %H:%M:%S') }}"
