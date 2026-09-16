@@ -9,4 +9,3 @@
       ansible.builtin.template:
         src: templates/multi_type.j2
         dest: /tmp/multi_info
-      delegate_to:  localhost
