@@ -1,0 +1,26 @@
+---
+- name: Install Apache Web Server on CentOS and Ubuntu
+  hosts: target_node
+  become: yes
+  gather_facts: yes  # Required to detect OS distributions
+
+  tasks:
+    - name: Set package name dynamically based on OS family
+      ansible.builtin.set_fact:
+        web_package: "{{ 'httpd' if ansible_os_family == 'RedHat' else 'apache2' }}"
+
+    - name: Install the web server package
+      ansible.builtin.package:
+        name: "{{ web_package }}"
+        state: present
+
+    - name: Install sample file using jinja2 template
+      ansible.buitin.template:
+      src: templates/index.j2
+      dest: /var/www/html/index.html
+
+    - name: Ensure the web server service is started and enabled
+      ansible.builtin.service:
+        name: "{{ web_package }}"
+        state: started
+        enabled: yes

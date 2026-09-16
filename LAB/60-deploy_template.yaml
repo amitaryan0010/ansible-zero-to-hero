@@ -12,7 +12,7 @@
     - name: Generate and deploy the custom MOTD file
       ansible.builtin.template:
         src: templates/motd.j2
-        dest: /etc/motd
+        dest: /tmp/motd
         owner: root
         group: root
         mode: '0644'
