@@ -9,6 +9,10 @@
   become: yes
    
   tasks:
+    - name: Display gathered facts
+      ansible.builtin.package_facts:
+        manager: auto
+
     - name: Rendering all the information
       ansible.builtin.template:
         src: templates/multi_type.j2
