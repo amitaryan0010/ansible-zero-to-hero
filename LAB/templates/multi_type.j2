@@ -29,5 +29,5 @@ User {{ loop.index }} : {{ user }}
 
 ## List of all packages installed.
 {% for package in ansible_facts['packages'] | disct2items %}
-{{ packag['value'] | json_query()'[*].name) }}
+{{ packag['value'] | json_query()'[*].name') }}
 {% endfor %}
