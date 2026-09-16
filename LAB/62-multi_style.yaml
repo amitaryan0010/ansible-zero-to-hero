@@ -15,7 +15,7 @@
       register: df_output
     
     - name: setting facts for disks output
-      ansible.builtin.set_facts:
+      ansible.builtin.set_fact:
         disks_start: true
         result: Disk optimization completed successfully!
       when: df_output.rc == 0
