@@ -16,8 +16,8 @@
 
     - name: Install sample file using jinja2 template
       ansible.buitin.template:
-      src: templates/index.j2
-      dest: /var/www/html/index.html
+        src: templates/index.j2
+        dest: /var/www/html/index.html
 
     - name: Ensure the web server service is started and enabled
       ansible.builtin.service:
