@@ -15,7 +15,7 @@
         state: present
 
     - name: Install sample file using jinja2 template
-      ansible.buitin.template:
+      ansible.builtin.template:
         src: templates/index.j2
         dest: /var/www/html/index.html
 
