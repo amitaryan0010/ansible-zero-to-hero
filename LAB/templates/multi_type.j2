@@ -28,6 +28,6 @@ User {{ loop.index }} : {{ user }}
 {# White-space stripping ({%- and -%}): Adding a minus sign (-) right next to the percentage brackets tells Jinja2 to completely strip out any invisible trailing newlines or blank carriage returns created by the structural looping block itself. This prevents unexpected blank lines from ruining your file formatting. #}
 
 ## List of all packages installed.
-{% for package in ansible_facts['packages'] | disct2items %}
-{{ packag['value'] | json_query()'[*].name') }}
+{% for package in ansible_facts['packages'] | dict2items %}
+{{ package['value'] | json_query('[*].name') }}
 {% endfor %}
