@@ -25,6 +25,18 @@ User {{ loop.index }} : {{ user }}
 ## Disk optimization Start
 {% if disks_start %}
 {{ result }}
+-------------------------------
+{{ df_output | to_json }}
+-------------------------------
+{{ df_output | to_yaml }}
+=============================
+{{ df_output | to_nice_json }}
+=============================
+{{ df_output | to_nice_yaml }}
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+{{ df_output | from_json }}
+{{ df_output | from_yaml }}
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 {% endif %}
 
 {# %-15s (Fixed-Width Formatting): This is a standard string formatting expression. It means: "Reserve a block of exactly 15 characters for this string, and align it to the left." If the hostname is docker (6 characters), it adds 9 trailing spaces automatically to pad the column out to 15. #}
