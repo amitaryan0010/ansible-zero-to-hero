@@ -1,0 +1,18 @@
+---
+- name: Deploy Dynamic Configuration files
+  hosts: target_node
+  gather_facts: yes
+  become: yes
+
+  vars:
+    # Defining a custom variable that the template will use
+    app_environment: "Production-Cluster"
+
+  tasks:
+    - name: Generate and deploy the custom MOTD file
+      ansible.builtin.template:
+        src: templates/motd.j2
+        dest: /etc/motd
+        owner: root
+        group: root
+        mode: '0644'

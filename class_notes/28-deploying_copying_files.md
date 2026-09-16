@@ -17,7 +17,6 @@
 - ansible.builtin.blockinfile:
     - Inserts, updates, or removes a multi-line block of text. It wraps the text block in marker lines (e.g., # BEGIN ANSIBLE MANAGED BLOCK) so it knows exactly what to modify later.
     - check this playbook [53-blockinfile_module.yaml](../LAB/53-blockinfile_module.yaml)
-
 - ansible.builtin.replace: 
     - Similar to lineinfile, but it is used to search for a regular expression pattern throughout the entire file and replace all occurrences of it (like a sed command).
     - check this playbook [54-replace_module.yaml](../LAB/54-replace_module.yaml)
@@ -33,9 +32,6 @@
 - ansible.builtin.assemble:
     - Takes multiple file fragments scattered across a directory on the managed host and stitches them together into one large unified file.
     - check this playbook [58-assemble_module.yaml](../LAB/58-assemble_module.yaml)
-    
 - ansible.builtin.unarchive:
     - Unpacks compressed files (like .zip, .tar.gz, .tgz) directly on the target machine. It can even copy the archive from your local machine and unpack it in one step.
-
-- ansible.builtin.template: 
-    - Crucial. Instead of just copying a static file, this module takes a dynamic file written with Jinja2 templating. It swaps out variables (like IP addresses, hostnames, or custom settings) on the fly before sending the finalized configuration file to the managed host.
+    - check this playbook [59-zip_unzip_module.yaml](../LAB/59-zip_unzip_module.yaml)
