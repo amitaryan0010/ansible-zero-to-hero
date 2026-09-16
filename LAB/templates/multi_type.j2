@@ -22,6 +22,11 @@ User {{ loop.index }} : {{ user }}
 {{ "%-15s : %s" | format(my_host, hostvars[my_host]['ansible_default_ipv4']['address'] | default('Unknown')) }}
 {% endfor %}
 
+## Disk optimization Start
+{% if disks_start %}
+{{ result }}
+{% endif %}
+
 {# %-15s (Fixed-Width Formatting): This is a standard string formatting expression. It means: "Reserve a block of exactly 15 characters for this string, and align it to the left." If the hostname is docker (6 characters), it adds 9 trailing spaces automatically to pad the column out to 15. #}
 
 {# The format(...) Filter: This passes your variable values (my_host and the IP address) directly into those fixed-width columns. #}

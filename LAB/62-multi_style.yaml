@@ -9,6 +9,17 @@
   become: yes
    
   tasks:
+    - name: Run disk space command
+      ansible.builtin.shell:
+        cmd: df -h
+      register: df_output
+    
+    - name: setting facts for disks output
+      ansible.builtin.set_facts:
+        disks_start: true
+        result: Disk optimization completed successfully!
+      when: df_output.rc == 0
+
     - name: Display gathered facts
       ansible.builtin.package_facts:
         manager: auto
