@@ -3,10 +3,7 @@
   hosts: localhost
   gather_facts: yes
   become: yes
-
-  vars_files:
-    - multi_info.yaml
-    
+   
   tasks:
     - name: Rendering all the information
       ansible.builtin.template:
