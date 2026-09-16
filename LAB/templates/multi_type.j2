@@ -15,6 +15,7 @@ User {{ loop.index }} : {{ user }}
 
 ## targetNode Hosts Information
 {{ "%-15s : %s" | format("Hostname", "IP") }}
+---------------------------------------------
 {% for my_host in groups['target_node'] -%}
 {{ "%-15s : %s" | format(my_host, hostvars[my_host]['ansible_default_ipv4']['address'] | default('Unknown')) }}
 {% endfor %}
