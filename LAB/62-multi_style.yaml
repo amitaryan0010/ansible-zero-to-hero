@@ -1,6 +1,6 @@
 ---
 - name: Deploy Dynamic Configuration Multi Style File
-  hosts: all
+  hosts: localhost
   gather_facts: yes
   become: yes
    
