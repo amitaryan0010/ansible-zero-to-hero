@@ -7,3 +7,14 @@
 {% for user in list_users if not user == 'root' %}
 User {{ loop.index }} : {{ user }}
 {% endfor %}
+
+## All List of managed host
+{% for host in groupa['all'] %}
+{{ host }}
+{% endfor %}
+
+## targetNode Hosts Information
+{% for my_host in group['target_node'] %}
+Hostname   - IP
+{{ my_host }}  - {{ ansible_default_ipv4['address'] }}
+{% endfor %}
