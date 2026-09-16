@@ -30,6 +30,6 @@ User {{ loop.index }} : {{ user }}
 ## List of all packages installed.
 {% for package in ansible_facts['packages'] | dict2items %}
 -----------------------------------------------------------------
-{{ package['value'] | json_query('[*].name') | regex_replace('\'') | regex_replace('\[') | regex_replace('\]') }} : {{ packages['value'] | json_query('[*].version') | regex_replace('\'') | regex_replace('\[') | regex_replace('\]') }}
+{{ package['value'] | json_query('[*].name') | regex_replace('\'') | regex_replace('\[') | regex_replace('\]') }} : {{ package['value'] | json_query('[*].version') | regex_replace('\'') | regex_replace('\[') | regex_replace('\]') }}
 {% endfor %}
 {# /usr/bin/python3.12 -m pip install --user jmespath -- installl this to run  json_query #}
