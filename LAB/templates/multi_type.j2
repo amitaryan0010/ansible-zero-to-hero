@@ -17,5 +17,5 @@ User {{ loop.index }} : {{ user }}
 
 Hostname        - IP
 {% for my_host in groups['target_node'] %}
-{{ my_host }}   - {{ ansible_hostname['default_ipv4']['address'] }}
+{{ my_host }}   - {{ hostvars[my_host]['ansible_default_ipv4']['address'] | default('IP Unknown (Facts not gathered)') }}
 {% endfor %}
