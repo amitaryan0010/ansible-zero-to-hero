@@ -34,8 +34,7 @@ User {{ loop.index }} : {{ user }}
 =============================
 {{ df_output | to_nice_yaml }}
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-{{ df_output | from_json }}
-{{ df_output | from_yaml }}
+{# Removed from_json and from_yaml because df_output is already a dictionary #}
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 {% endif %}
 
@@ -49,4 +48,4 @@ User {{ loop.index }} : {{ user }}
 -----------------------------------------------------------------
 {{ package['value'] | json_query('[*].name') | regex_replace('\'') | regex_replace('\[') | regex_replace('\]') }} : {{ package['value'] | json_query('[*].version') | regex_replace('\'') | regex_replace('\[') | regex_replace('\]') }}
 {% endfor %}
-## /usr/bin/python3.12 -m pip install --user jmespath -- installl this to run  json_query 
+{# /usr/bin/python3.12 -m pip install --user jmespath -- installl this to run  json_query #}
