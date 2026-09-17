@@ -26,15 +26,16 @@ User {{ loop.index }} : {{ user }}
 {% if disks_start %}
 {{ result }}
 -------------------------------
-{{ df_output | to_json }}
+{{ df_output.stdout_lines | to_json }}
 -------------------------------
-{{ df_output | to_yaml }}
+{{ df_output.stdout_lines | to_yaml }}
 =============================
 {{ df_output | to_nice_json }}
 =============================
-{{ df_output | to_nice_yaml }}
+{{ df_output.stdout_lines | to_nice_yaml }}
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-{# Removed from_json and from_yaml because df_output is already a dictionary #}
+{# Use from_json and from_yaml if output is in JSON or YAAML format #}
+{# {{ output | from_json }} #}
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 {% endif %}
 
