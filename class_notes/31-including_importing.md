@@ -14,11 +14,13 @@
 
 ### DEMO `import_*`
 - To verify the import_* process at the begining of the ansible playbook.
-- Here, we have [64-import_.yaml](../LAB/64-import_.yaml) playbook which is importing the tasks from [65_import_tasks.yaml](../LAB/65_import_tasks.yaml) and while running or syntax-check for [64-import_.yaml](../LAB/64-import_.yaml), it is failing  in begining.
+- Here, we have [64-import_.yaml](../LAB/64-import_.yaml) playbook which is `importing` the tasks from [65_import_tasks.yaml](../LAB/65_import_tasks.yaml) and while running or syntax-check for [64-import_.yaml](../LAB/64-import_.yaml), it is failing  in begining.
 - Also, [65_import_tasks.yaml](../LAB/65_import_tasks.yaml) is not a playbook, rather it is a valid yaml file but not a `palybook`, notice the error while check syntax.
 
-    ![alt text](image.png)
+    ![alt text](../images/import1.png)
 
 ### DEMO `include_*`
 - To verify the include_* processes only when the playbook reaches to that tasks.
-- Here we have 
+- Here we have [66-include_.yaml](../LAB/66-include_.yaml) playbook which is `including` the tasks from [67_include_tasks.yaml](../LAB/67_include_tasks.yaml) and while verifying the syntax-check, it passed since no error in main file and while running, it got failed at tasks which are included but before that, it processed all tasks.
+
+    ![alt text](../images/include1.png)
