@@ -4,8 +4,8 @@
   hosts:
     - server1.path4cloud.com
     - linux:webservers
-    - linux,&cloud
-    - linux,!cloud
+    #- linux,&cloud
+    #- linux,!cloud
   
   tasks:
     - name: Display hosts when operating against server1
