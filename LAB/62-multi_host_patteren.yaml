@@ -3,7 +3,7 @@
   gather_facts: no
   hosts:
     - server1.path4cloud.com
-    - linux:webservers
+    #- linux:webservers
     #- linux,&cloud
     #- linux,!cloud
   
