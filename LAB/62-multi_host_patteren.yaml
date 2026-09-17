@@ -1,0 +1,15 @@
+---
+- name: Learning Multi hosts patteren
+  gather_facts: no
+  hosts:
+    - server1.path4cloud.com
+    - oracledb[1:10].path4cloud.com
+    - dbservers[2:12]
+    #- linux:webservers
+    #- linux,&cloud
+    #- linux,!cloud
+  
+  tasks:
+    - name: Display hosts with multiple pattern
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }}"
