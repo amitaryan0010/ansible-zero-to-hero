@@ -30,7 +30,7 @@ User {{ loop.index }} : {{ user }}
 -------------------------------
 {{ df_output.stdout_lines | to_yaml }}
 =============================
-{{ df_output | to_nice_json }}
+{{ df_output.stdout_lines | to_nice_json }}
 =============================
 {{ df_output.stdout_lines | to_nice_yaml }}
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-

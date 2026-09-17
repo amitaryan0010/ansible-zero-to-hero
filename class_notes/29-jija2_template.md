@@ -9,3 +9,8 @@
         - {{ ... }}: Variables – Prints out the value of an Ansible variable or fact.
         - {% ... %}: Statements – Handles logic like if/else conditionals and for loops.
         - {# ... #}: Comments – Text that gets completely hidden from the final file.
+
+### DEMO
+- check this playbook [60-deploy_template.yaml](../LAB/60-deploy_template.yaml) to understand the normal j2 template.
+- check this playbook [61-my_web_server.yaml](../LAB/61-my_web_server.yaml) to parse the ansible_facts in j2 template.
+- check this playbook [62-multi_style.yaml](../LAB/62-multi_style.yaml) to understand the `for` loop and `if` condition, how we can parse the information to different style.

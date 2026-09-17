@@ -1,0 +1,9 @@
+---
+- name: Learning Multi hosts patteren
+  gather_facts: no
+  hosts: all
+  
+  tasks:
+    - name: Display hosts
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }}"
