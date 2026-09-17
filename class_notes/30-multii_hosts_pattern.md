@@ -118,3 +118,7 @@ $ ansible -i linux 'linux,!cloud' --list-hosts
 ```
 - To work with playbooks, like how can we define the hosts at PLAY level.
     - check this playbook
+    
+    - run as `$ anr 62-multi_host_patteren.yaml -i ../master_inventory/dev/linux`
+    OR
+    `$ ap -i ../master_inventory/dev/linux 62-multi_host_patteren.yaml`

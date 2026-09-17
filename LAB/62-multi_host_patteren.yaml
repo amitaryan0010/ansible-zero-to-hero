@@ -1,9 +1,25 @@
 ---
 - name: Learning Multi hosts patteren
   gather_facts: no
-  hosts: all
+  hosts:
+    - server1.path4cloud.com
+    - linux:webservers
+    - linux,&cloud
+    - linux,!cloud
   
   tasks:
-    - name: Display hosts
+    - name: Display hosts when operating against server1
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }}"
+
+    - name: Display hosts when operating against linux or webservers group
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }}"
+
+    - name: Display hosts when operating against, part of linux as well as cloud
+      ansible.builtin.debug:
+        msg: "{{ inventory_hostname }}"
+
+    - name: Display hosts when operating against, part of linux but not part of cloud
       ansible.builtin.debug:
         msg: "{{ inventory_hostname }}"
