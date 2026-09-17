@@ -117,8 +117,8 @@ $ ansible -i linux 'linux,!cloud' --list-hosts
     serverd.path4cloud.com
 ```
 - To work with playbooks, like how can we define the hosts at PLAY level.
-    - check this playbook
+    - check this playbook [63-multi_host_patteren.yaml](../LAB/63-multi_host_patteren.yaml)
     
-    - run as `$ anr 62-multi_host_patteren.yaml -i ../master_inventory/dev/linux`
+    - run as `$ anr 63-multi_host_patteren.yaml -i ../master_inventory/dev/linux`
     OR
-    `$ ap -i ../master_inventory/dev/linux 62-multi_host_patteren.yaml`
+    `$ ap -i ../master_inventory/dev/linux 63-multi_host_patteren.yaml`

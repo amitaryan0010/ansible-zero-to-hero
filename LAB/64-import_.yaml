@@ -1,0 +1,12 @@
+---
+- name: Learning Import_*
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: first task
+      ansible.builtin.debug:
+        msg: " I am first tasks"
+
+    - name: Running Importing tasks
+      ansible.builtin.import_tasks: 65_import_tasks.yaml
