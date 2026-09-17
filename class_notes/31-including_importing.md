@@ -12,6 +12,13 @@
     - ansible.builtin.include_tasks : Dynamically include a task list
     - ansible.builtin.include_vars : Load variables from files, dynamically within a task
 
-### DEMO
-- To check the import_* process at the begining of the ansible playbook.
-- 
+### DEMO `import_*`
+- To verify the import_* process at the begining of the ansible playbook.
+- Here, we have [64-import_.yaml](../LAB/64-import_.yaml) playbook which is importing the tasks from [65_import_tasks.yaml](../LAB/65_import_tasks.yaml) and while running or syntax-check for [64-import_.yaml](../LAB/64-import_.yaml), it is failing  in begining.
+- Also, [65_import_tasks.yaml](../LAB/65_import_tasks.yaml) is not a playbook, rather it is a valid yaml file but not a `palybook`, notice the error while check syntax.
+
+    ![alt text](image.png)
+
+### DEMO `include_*`
+- To verify the include_* processes only when the playbook reaches to that tasks.
+- Here we have 
