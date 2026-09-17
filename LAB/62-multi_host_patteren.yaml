@@ -3,7 +3,6 @@
   gather_facts: no
   hosts:
     - server1.path4cloud.com
-    - oracledb[1:10].path4cloud.com
     - dbservers[2:]
     #- linux:webservers
     #- linux,&cloud
