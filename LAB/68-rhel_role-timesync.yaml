@@ -33,7 +33,7 @@
         name: "{{ host_timezone }}"
       notify: restart crond service
 
-  post_task:
+  post_tasks:
     - name: Time Sync is done
       ansible.builtin.debug:
         msg: "Time has been synchronized and Time Zone changed to {{ host_timezone }}."
