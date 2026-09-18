@@ -15,13 +15,13 @@ vars_file:
 
 # include_vars module
 - We can load the variable from a file as a module into the play as task.
-```
+```yaml
 - name: Variables included as a module
   ansible.builtin.include_vars:
     file: my_variable.yaml
 ```
 - In Ansible, you can simulate loading variables from a file into a distinct namespace or "as a module" by using the name parameter inside the ansible.builtin.include_vars module.
-```
+```yaml
 ansible.builtin.include_vars:
   file: my_variable.yaml
   name: custom_vars
@@ -33,7 +33,7 @@ ansible.builtin.include_vars:
 # set_fact module
 - It is used to create or modify variables dynamically during a playbook's execution.
 - Unlike static variables defined in a vars: block, set_fact variables are evaluated at runtime. This means you can calculate their values using other variables, conditional logic, or outputs registered from previous tasks.
-```
+```yaml
 ansible.builtin.set_fact:
   my_fruit: banana
 ```
@@ -42,7 +42,7 @@ ansible.builtin.set_fact:
 
 # vars_prompt
 - The vars_prompt keyword in Ansible is used to interactively prompt the user for input when the playbook starts running. It is highly useful for gathering runtime configurations, confirmations, or sensitive details like passwords without hardcoding them into your files.
-```
+```yaml
 vars_prompt:
   - name: system_user
     prompt: "Enter the target username"
@@ -51,7 +51,7 @@ vars_prompt:
 ```
 - Hashing values supplied by vars_prompt - [more info](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_prompts.html#hashing-values-supplied-by-vars-prompt)
   - You can hash the entered value so you can use it, for example, with the user module to define a password:
-  ```
+  ```yaml
   vars_prompt:
     - name: my_password2
       prompt: Enter password2
@@ -62,7 +62,7 @@ vars_prompt:
   ```
 - Allowing special characters in vars_prompt values
   - Some special characters, such as { and % can create templating errors. If you need to accept special characters, use the unsafe option
-  ```
+  ```yaml
   vars_prompt:
     - name: my_password_with_weird_chars
       prompt: Enter password

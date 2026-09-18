@@ -64,7 +64,7 @@ This ansible.cfg file contains the standard configuration headers used to custom
 
 
 ## Demo: Customize the ansible.cfg
-```
+```yaml
 [defaults]
 inventory = ./inventory
 remote_user = ansibleuser
@@ -153,7 +153,7 @@ become_ask_pass = false
 
 #### Example file:
 [ansible-navigator settings](https://docs.ansible.com/projects/navigator/settings/)
-```
+```yaml
 $ cat ansible-navigator.yaml
 ---
 ansible-navigator:

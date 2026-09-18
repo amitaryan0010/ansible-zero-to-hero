@@ -5,7 +5,7 @@
 
 -  Simple List Loop (Looping over Strings)
     - The most basic loop takes a simple flat list. During execution, Ansible automatically assigns the current value to a special variable named item.
-        ```
+        ```yaml
         - name: Ensure multiple packages are installed
           ansible.builtin.dnf:
             name: "{{ item }}"
@@ -18,7 +18,7 @@
 
 - Complex Loop (Looping over Dictionaries)
     - When you need to pass multiple parameters per iteration (like a username and their group membership), you pass a list of key-value dictionaries. You access the keys using dot notation `(item.key_name)`.
-        ```
+        ```yaml
         - name: Create multiple users with distinct groups
         ansible.builtin.user:
           name: "{{ item.username }}"
@@ -31,7 +31,7 @@
         ```
 -  Looping over a Variable List
     - Instead of hardcoding items directly inside the task, you can pass a variable containing a pre-defined list:
-        ```
+        ```yaml
         vars:
           system_services:
             - firewalld

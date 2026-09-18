@@ -10,7 +10,7 @@
     - `Exact String Matching`: The string passed to `notify:` must match the `name:` of the handler exactly, **character-for-character (case-sensitive)**.
     - `Flawless Dependency Safety`: If a playbook crashes halfway through its tasks, none of the queued handlers will execute. This prevents your services from entering broken halfway states.
     - `Forcing Immediate Execution`: If you need a handler to run instantly mid-playbook (e.g., bringing up a firewall rule before installing software over the network), you can flush the queue manually using a meta task:
-        ```
+        ```yaml
         - name: Flush handlers right now
           ansible.builtin.meta: flush_handlers
         ```

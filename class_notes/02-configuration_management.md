@@ -23,7 +23,7 @@ In large environments like cloud and big datacenters, managing individual server
  ## Real-Time Examples of Ansible in Action
  - Example 1: Setting Up a Fleet of Web Servers (The Apache Deployment)
     - Imagine a company launching a new web application that requires the Apache web server (httpd) to be running on 10 new RHEL-9 servers.Instead of logging into all 10 servers, you write one Ansible Playbook (webserver.yml):
-        ```
+        ```yaml
         ---
         - name: Configure Web Servers
           hosts: web_servers
@@ -49,7 +49,7 @@ In large environments like cloud and big datacenters, managing individual server
 
 - Example 2: User and Permission Onboarding (Tying back to ACLs!)
     - When a new System Administrator named alice joins the company, she needs an account, an SSH key deployed, and specific sudo permissions across 100 corporate staging and production servers.
-        ```
+        ```yaml
         ---
         - name: Onboard New System Administrator
           hosts: all_servers
@@ -76,7 +76,7 @@ In large environments like cloud and big datacenters, managing individual server
 
 - Example 3: Automated Security Patching & Kernel Updates
     - The Scenario: A critical security vulnerability (like an openssh exploit) is discovered. The security team demands that 200 Linux servers across the company be patched immediately, and any server running an outdated kernel must be rebooted during a designated 2 AM maintenance window.
-        ```
+        ```yaml
         ---
         - name: Critical Security Patching Window
           hosts: production_servers
@@ -104,7 +104,7 @@ In large environments like cloud and big datacenters, managing individual server
 
 - Example 4: Hardening Corporate SSH Configurations (Compliance Enforcement)
     - The Scenario: To pass a security audit (like ISO 27001 or PCI-DSS), your company must enforce a strict policy: Root login over SSH must be completely disabled, password authentication must be blocked (only SSH keys allowed), and an official warning banner must display upon login on every single machine.
-        ```
+        ```yaml
         ---
         - name: Enforce SSH Security Hardening
           hosts: all
@@ -137,7 +137,7 @@ In large environments like cloud and big datacenters, managing individual server
 
 - Example 5: Database Maintenance (Automated Backups & Log Rotation)
     - The Scenario: Your database administrators (DBAs) need to ensure that every MySQL/MariaDB server in the infrastructure has a nightly backup script deployed to cron, and old database logs are automatically rotated so disk space never runs out.
-        ```
+        ```yaml
         ---
         - name: Configure Database Maintenance Tasks
           hosts: db_servers

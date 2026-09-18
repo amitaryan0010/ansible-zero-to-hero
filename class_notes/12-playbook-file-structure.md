@@ -2,7 +2,7 @@
 - Think of it as a step-by-step automation script written in human-readable format.
 
 🧩 Basic Playbook Structure
-```
+```yaml
 ---                           ---> This indicates that starting of yaml file but comletely optional
 - name: Playbook description  ---> Describes what the playbook does. Helps in readability and logs
   hosts: target_group         ---> Defines which machines to run on (from inventory)

@@ -28,7 +28,7 @@
 ### Where to Define Variables (Scope)
 - Ansible variables can be defined in multiple places depending on how wide you want their scope to be. They are grouped into three main categories:
     1. Playbook Level (Play or Task scope): You can define variables directly inside your playbook using the vars keyword:
-    ```
+    ```yaml
     ---
     - name: Variable Example Playbook
       hosts: all
@@ -67,7 +67,7 @@
 ### Advanced Variable Features
 - Registered Variables (register)
     - You can capture the output of a task into a temporary variable and use it in a later task:
-    ```
+    ```yaml
     - name: Check if a file exists
       ansible.builtin.stat:
         path: /etc/httpd/conf/httpd.conf

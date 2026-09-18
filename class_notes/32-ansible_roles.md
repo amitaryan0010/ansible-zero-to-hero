@@ -95,4 +95,7 @@ CHANGELOG.md  example-multiple-ntp-servers-playbook.yml  example-single-pool-pla
 - Where we will pass the value for `ntp-servers` and `custom-settings` for log directory.
 - It will take the backup of each file before it required to modify.
 - Also, we are changing the `timezone` to verify the time in sync.
-- check this playbook
+- check this playbook [68-rhel_role_timesync.yaml](../LAB/68-rhel_role_timesync.yaml)
+    - with ansible-core run as: `$ ap 68-rhel_role_timesync.yaml`
+    - with ansible-navigator as: `$ anr 68-rhel_role_timesync.yaml --ee false`
+        - with `--ee false` completely bypasses the isolated execution environment container and forces Ansible to run directly on your physical RHEL 9 control node.

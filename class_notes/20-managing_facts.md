@@ -10,7 +10,7 @@
 
 ### Turning Off Fact Gathering
 - Gathering facts takes time. If your playbook doesn't need system details (e.g., you are just creating a user with hardcoded data), you can speed up execution by disabling it:
-    ```
+    ```yaml
     - name: Playbook with facts turned off
       hosts: all
       gather_facts: no  # <-- Disables automatic discovery
@@ -23,7 +23,7 @@
     - File Format: Create a file ending in .fact (can be INI format or JSON format).
 
 - Example (/etc/ansible/facts.d/info.fact)
-    ```
+    ```yaml
     [ansible_training]
     trainer: path4cloud
     mode: online
@@ -55,7 +55,7 @@
         
 ### Setting Facts Dynamically (set_fact)
 - You can create or modify variables mid-playbook based on task outputs or inline logic using the ansible.builtin.set_fact module:
-    ```
+    ```yaml
     - name: Calculate value on the fly
       ansible.builtin.set_fact:
         is_rhel_system: "{{ ansible_facts['os_family'] == 'RedHat' }}"

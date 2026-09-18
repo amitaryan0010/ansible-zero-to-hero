@@ -2,7 +2,7 @@
 - When dealing with Ansible secrets, your primary tool is Ansible Vault. It allows you to encrypt sensitive data—such as passwords, API keys, and private keys—directly inside your playbooks, variable files, or files themselves, rather than leaving them in plaintext.
 
 - Let say, we need to add the username and password via ansible, so we can use `user` module to acheive the same.
-    ```
+    ```yaml
     ansible.builtin.user:
         name: "{{ username }}"
         password: "{{ password }}"
@@ -56,7 +56,7 @@
     $ sudo dnf install python3-passlib
     ```
 - Lets remove this user and this time, create with this filter.
-    ```
+    ```yaml
     ansible.builtin.user:
       name: "{{ username }}"
       password: "{{ password | password_hash('sha512') }}"
@@ -125,7 +125,7 @@
         NOTE: If we are using the new way, ansible-navigator then put this flag "--playbook-artifact-enable false" as well. Else, it will hang and stuck there. Since we are using this in out ansible-navigator.yaml file so we are good.
         ```
         - artifact disabled in `~/.ansible-navigator.yaml`
-        ```
+        ```yaml
         execution-environment:
           image: registry.redhat.io/ansible-automation-platform-27/ee-supported-rhel9
         playbook-artifact:
@@ -153,7 +153,7 @@
                 $ anr 18-password_vault.yaml --vault-password-file user_info_psd
 
         - If we don't want to pass this vault file path then we can define in `ansible.cfg` under `default` section. so, whenever a password is required then ansible knows from where it needs to fetch the password.
-            ```
+            ```yaml
             [default]
             vault_password_file = <path>
             ```

@@ -66,7 +66,7 @@ Login Succeeded!
         # ansible-navigator settings --sample > myconfig.yaml
         
 ### Common Settings
-```
+```yaml
 ---
 ansible-navigator:
   ansible:
@@ -279,7 +279,7 @@ or
                 psycopg2-binary
                 ```
             5. Create the [execution-environment.yml](../LAB/execution-environment.yml) file
-                ```
+                ```yaml
                 ---
                 version: 3
 

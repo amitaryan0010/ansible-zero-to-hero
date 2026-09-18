@@ -2,15 +2,15 @@
 - Ansible conditionals allow you to control whether a task runs or is skipped based on specific criteria, variables, or system properties. The primary keyword used for conditionals in Ansible is `when`.
 - Few Evaluating Examples:
     - Basic Conditionals
-        ```
+        ```yaml
         when: environment_type == "staging"  # Runs ONLY if environment_type equals staging
         ```
     - Fact-Based Conditionals
-        ```
+        ```yaml
         when: ansible_facts['os_family'] == "RedHat"
         ```
     - Multiple Conditions (AND / OR Logic)
-        ```
+        ```yaml
         when:
           - ansible_facts['distribution'] == "CentOS"
           - ansible_facts['distribution_major_version'] == "9"
@@ -25,7 +25,7 @@
             ( ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] == "9")
         ```
     - Evaluating Task Results (Registered States)
-        ```
+        ```yaml
         - ansible.builtin.stat:
             path: /etc/nginx/nginx.conf
           register: nginx_conf
@@ -36,7 +36,7 @@
           when: nginx_conf.stat.exists == true
         ```
     - Loop Conditionals (Evaluating loop items)
-        ```
+        ```yaml
         - name: Create users, but skip system accounts
           ansible.builtin.user:
             name: "{{ item.name }}"

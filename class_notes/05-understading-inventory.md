@@ -21,7 +21,7 @@ cat /etc/ansible/hosts
 
 1️⃣ Static Inventory
 - A manually defined file where you list servers or hosts which you want to manage via hosts.
-```
+```yaml
 📄 Example (INI format)
     server1.path4cloud.com
 
@@ -79,7 +79,7 @@ Lets verify:
 ```
 ```
 📄 YAML format (modern)
-We camn incporporate the hosts lists with new modern command ansible-inventory with many style, it will print the hosts list in json format by default.
+We can incporporate the hosts lists with new modern command ansible-inventory with many style, it will print the hosts list in json format by default.
 
 # ansible-inventory --list (will print whole list of hosts from inventory)
 
@@ -120,7 +120,7 @@ We camn incporporate the hosts lists with new modern command ansible-inventory w
   - Active Directory
 - We can use supported plugins for each provider to get the latest inventory.
 - For an example, here we are using yaml file and aws_ec2 plugin to fetch the latest inventory.
-    ```
+    ```yaml
     📄 Sample config
     plugin: aws_ec2
     regions:

@@ -52,7 +52,7 @@
 
 3) Copy and rename the config files to ansibleuser home directory as hidden files:
     ```
-    "as asibleuser"
+    "as ansibleuser"
     $ cd ansible-zero-to-hero/setup_files
     $ cp ansible.cfg /home/ansibleuser/.ansible.cfg
     (change the remote_user, if you have created an another user in step2)
