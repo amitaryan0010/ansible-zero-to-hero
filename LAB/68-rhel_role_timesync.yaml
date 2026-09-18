@@ -16,7 +16,8 @@
         prompt: "Verify TimeZone and press ENTER to continue to update..."
 
   roles:
-    - role: rhel-system-roles.timesync
+    #- role: rhel-system-roles.timesync # <-- Use this with ansible-core
+    - role: redhat.rhel_system_roles.timesync  # <-- Updated to Collection Syntax for EE
       vars:
         timesync_chrony_custom_settings:
           - "logdir /var/log/chrony"
