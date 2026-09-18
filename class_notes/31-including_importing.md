@@ -24,3 +24,10 @@
 - Here we have [66-include_.yaml](../LAB/66-include_.yaml) playbook which is `including` the tasks from [67_include_tasks.yaml](../LAB/67_include_tasks.yaml) and while verifying the syntax-check, it passed since no error in main file and while running, it got failed at tasks which are included but before that, it processed all tasks.
 
     ![alt text](../images/include1.png)
+
+### Listing Tasks
+- We can list the tasks using `--list-tasks` flag with `ansible-playbook` or `ansible-navigator run` commnad, but there is a difference between imported tasks and included tasks.
+    - When we list the import_*, then it will show the exact name of tasks, defined in inluded tasks, not the tasks name which are including (calling) that task from another YAML file.
+    - When we list the include_*, then it will show the name of tasks from main YAML file which are including that task.
+
+    ![alt text](../images/ltasks1.png)
