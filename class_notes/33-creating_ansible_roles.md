@@ -183,3 +183,157 @@ docker | SUCCESS => {
     "vary": "Accept-Encoding"
 }
 ```
+---
+# Ansible Galaxy
+The ansible-galaxy command-line tool is Ansible's official built-in package manager. It is used to initialize, download, install, and manage community-built Roles and Collections.
+
+### Common ansible-galaxy Commands
+- Create a new role structure locally:
+    
+        $ ansible-galaxy role init my_custom_role
+- Install a role from the public Galaxy community repository:
+
+        $ ansible-galaxy role install geerlingguy.nginx
+- List all installed roles on your system:
+
+        $ ansible-galaxy role list
+
+### Galaxy Website
+- [Here](https://galaxy.ansible.com/ui/) is the ansible galaxy website hosted where all roles and collections are published.
+
+![alt text](../images/galaxy.png)
+
+## Command line Options with `ansible-galaxy`
+```
+$ ansible-galaxy role --help
+usage: ansible-galaxy role [-h] ROLE_ACTION ...
+
+positional arguments:
+  ROLE_ACTION
+    init       Initialize new role with the base structure of a role.
+    remove     Delete roles from roles_path.
+    delete     Removes the role from Galaxy. It does not remove or alter the actual GitHub repository.
+    list       Show the name and version of each role installed in the roles_path.
+    search     Search the Galaxy database by tags, platforms, author and multiple keywords.
+    import     Import a role into a galaxy server
+    setup      Manage the integration between Galaxy and the given source.
+    info       View more details about a specific role.
+    install    Install role(s) from file(s), URL(s) or Ansible Galaxy
+
+options:
+  -h, --help   show this help message and exit
+```
+
+- Further options with ROLE_ACTION
+```
+$ ansible-galaxy role search --help
+usage: ansible-galaxy role search [-h] [-s API_SERVER] [--token API_KEY] [-c] [--timeout TIMEOUT] [-v] [--platforms PLATFORMS] [--galaxy-tags GALAXY_TAGS] [--author AUTHOR]
+                                  [searchterm ...]
+
+positional arguments:
+  searchterm            Search terms
+
+options:
+  -h, --help            show this help message and exit
+  -s API_SERVER, --server API_SERVER
+                        The Galaxy API server URL
+  --token API_KEY, --api-key API_KEY
+                        The Ansible Galaxy API key which can be found at https://galaxy.ansible.com/me/preferences.
+  -c, --ignore-certs    Ignore SSL certificate validation errors.
+  --timeout TIMEOUT     The time to wait for operations against the galaxy server, defaults to 60s.
+  -v, --verbose         Causes Ansible to print more debug messages. Adding multiple -v will increase the verbosity, the builtin plugins currently evaluate up to -vvvvvv. A reasonable
+                        level to start is -vvv, connection debugging might require -vvvv. This argument may be specified multiple times.
+  --platforms PLATFORMS
+                        list of OS platforms to filter by
+  --galaxy-tags GALAXY_TAGS
+                        list of galaxy tags to filter by
+  --author AUTHOR       GitHub username
+```
+```
+$ ansible-galaxy role search nginx --platforms EL --galaxy-tags system --author geerlingguy
+
+Found 1 roles matching your search:
+
+ Name              Description
+ ----              -----------
+ geerlingguy.nginx Nginx installation for Linux, FreeBSD and OpenBSD.
+ ```
+ ```
+ Flag-by-Flag Breakdown
+ 
+ ** ansible-galaxy role search nginx: Tells the tool to search the internet registry for any role containing the keyword "nginx" in its name or description.
+ 
+ ** --platforms EL: Filters the search results to only show roles compatible with Enterprise Linux (EL) platforms. This includes RHEL (Red Hat Enterprise Linux), CentOS, Rocky Linux, and AlmaLinux.
+ 
+ ** --galaxy-tags system: Further narrows down the search results by requiring the role to be explicitly tagged with the metadata label "system" by its author.
+
+ ** --author geerlingguy: You want the role written by Jeff Geerling (a very popular Ansible contributor).
+ ```
+ - Installing at a specific directory, we can specify the path with `-p` flag while installing it.
+ ```
+ $ ansible-galaxy role install geerlingguy.nginx -p /home/ansibleuser/my_roles
+Starting galaxy role install process
+- downloading role 'nginx', owned by geerlingguy
+- downloading role from https://github.com/geerlingguy/ansible-role-nginx/archive/3.3.1.tar.gz
+- extracting geerlingguy.nginx to /home/ansibleuser/my_roles/geerlingguy.nginx
+- geerlingguy.nginx (3.3.1) was installed successfully
+```
+- If we are intalling it at custom path and want list command will look at that path, then we need to udpate the `roles_path` in `ansible.cfg` file.
+```
+roles_path = /home/ansibleuser/my_roles
+
+$ ansible-config dump | grep -i roles
+DEFAULT_ROLES_PATH(/home/ansibleuser/.ansible.cfg) = ['/home/ansibleuser/my_roles']
+
+$ ansible-galaxy list
+# /home/ansibleuser/my_roles
+- geerlingguy.nginx, 3.3.1
+```
+- verify the file structure of this role
+```
+$ cd my_roles/
+$ ls
+geerlingguy.nginx
+
+$ cd geerlingguy.nginx/
+$ tree -F
+.
+├── defaults/
+│   └── main.yml
+├── handlers/
+│   └── main.yml
+├── LICENSE
+├── meta/
+│   └── main.yml
+├── molecule/
+│   └── default/
+│       ├── converge.yml
+│       └── molecule.yml
+├── README.md
+├── tasks/
+│   ├── main.yml
+│   ├── setup-Archlinux.yml
+│   ├── setup-Debian.yml
+│   ├── setup-FreeBSD.yml
+│   ├── setup-OpenBSD.yml
+│   ├── setup-RedHat.yml
+│   ├── setup-Suse.yml
+│   ├── setup-Ubuntu.yml
+│   └── vhosts.yml
+├── templates/
+│   ├── nginx.conf.j2
+│   ├── nginx.repo.j2
+│   └── vhost.j2
+└── vars/
+    ├── AlmaLinux.yml
+    ├── Archlinux.yml
+    ├── Debian.yml
+    ├── FreeBSD.yml
+    ├── OpenBSD.yml
+    ├── RedHat.yml
+    ├── Rocky.yml
+    └── Suse.yml
+
+8 directories, 27 files
+```
+- Check more info about is Molecule [here](33-What_is_Molecule.md)
