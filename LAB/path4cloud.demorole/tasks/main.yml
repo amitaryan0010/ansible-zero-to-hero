@@ -1,0 +1,18 @@
+---
+# path4cloud.demorole/tasks/main.yml
+
+- name: Load OS-specific variable dynamically
+  ansible.builtin.include_vars:
+    file: "{{ ansible_os_family }}.yml"
+
+- name: Install required packages
+  ansible.builtin.package:
+    name: "{{ demorole_packages }}"
+    state: present
+
+- name: Ensure configuration file exits
+  ansible.builtin.template:
+    src: templates/index.j2
+    dest: "{{ demorole_conf_dir }}"
+  notify:
+   - restart httpd

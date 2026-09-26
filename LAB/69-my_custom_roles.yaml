@@ -1,0 +1,16 @@
+---
+- hosts: all
+  gather_facts: yes
+
+  pre_tasks:
+    - name: pre_tasks message
+      ansible.builtin.debug:
+        msg: "configuring web servers via roles"
+
+  roles:
+    - role: path4cloud.demorole
+
+  post_tasks:
+    - name: post_tasks message
+      ansible.builtin.debug:
+        msg: "web server configured via roles"

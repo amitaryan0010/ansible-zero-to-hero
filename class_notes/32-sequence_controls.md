@@ -12,7 +12,7 @@
 
 - Overriding Default Order:
     1. Blocks (block, rescue, always)
-        - Blocks group tasks together and allow you to handle failures sequentially—similar to try/catch in programming.
+        - Blocks group tasks together and allow you to handle failures sequentially, similar to try/catch in programming.
         - block: Runs normal tasks in sequence.rescue: Runs only if a task inside the block fails.
         - always: Runs at the end of the block structure no matter what (even if it failed or succeeded).
 

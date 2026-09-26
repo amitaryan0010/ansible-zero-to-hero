@@ -1,0 +1,6 @@
+---
+# Debian/Ubuntu family configurations
+demorole_packages:
+  - apache2
+demorole_service: apache2
+demorole_conf_dir: /var/www/html/index.html

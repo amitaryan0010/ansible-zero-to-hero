@@ -1,0 +1,5 @@
+---
+- name: restart httpd
+  ansible.builtin.systemd:
+    name: "{{ demorole_service }}"
+    state: restarted

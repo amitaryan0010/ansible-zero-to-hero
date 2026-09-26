@@ -1,0 +1,7 @@
+---
+# Red Hat family configurations
+demorole_packages:
+  - httpd
+  - firewalld
+demorole_service: httpd
+demorole_conf_dir: /var/www/html/index.html
