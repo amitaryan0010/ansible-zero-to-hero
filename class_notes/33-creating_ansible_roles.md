@@ -224,7 +224,7 @@ options:
   -h, --help   show this help message and exit
 ```
 
-- Further options with ROLE_ACTION
+- Further options with ROLE
 ```
 $ ansible-galaxy role search --help
 usage: ansible-galaxy role search [-h] [-s API_SERVER] [--token API_KEY] [-c] [--timeout TIMEOUT] [-v] [--platforms PLATFORMS] [--galaxy-tags GALAXY_TAGS] [--author AUTHOR]
@@ -337,3 +337,69 @@ $ tree -F
 8 directories, 27 files
 ```
 - Check more info about Molecule [here](33-What_is_Molecule.md)
+
+### Installing Roles Using a requirements files
+To install Ansible roles using a requirements file, you use the ansible-galaxy CLI tool. This approach allows you to batch-download multiple roles from Ansible Galaxy, public or private GitHub repositories, or custom source control managers
+
+- Step 1: Create the Requirements File : Create a file named requirements.yml (or requirements.yaml) in your project directory.
+
+| Source Type | Configuration Syntax in `requirements.yml` | Description |
+|---|---|---|
+| **Ansible Galaxy** | <pre>---<br>- src: geerlingguy.nginx<br>  version: "3.1.0"</pre> | Downloads a specific tagged version of a community role directly from Ansible Galaxy. |
+| **Public GitHub** | <pre>---<br>- src: git+https://github.com/username/repo.git<br>  version: master<br>  name: custom_name</pre> | Pulls from a public repo using the `git+` prefix. The `name` attribute renames the downloaded folder. |
+| **Public GitHub** | <pre>---<br>- src: https://github.com/username/repo.git<br>  src: git<br>  version: master<br>  name: custom_name</pre> |  When you explicitly provide scm: git, Ansible already knows it needs to use the system's git binary to clone the repository. |
+| **Private Git** | <pre>---<br>- src: git@github.com:example/private-role.git<br>  scm: git<br>  version: "v1.0.0"</pre> | Uses an SSH connection string for private repositories requiring keys. |
+| **As Tar Ball** | <pre>---<br>- src: file:///opt/local/myrole.tar<br>  name: myrole<br>  | Supports http, https or file protocol |
+
+Step 2: Run the Installation Command
+
+    ansible-galaxy role install -r requirements.yml
+
+
+![alt text](../images/galaxy1.png)
+
+#### DEMO
+```yaml
+# Download the ZIP FILE
+$ wget https://github.com/geerlingguy/ansible-role-postgresql/archive/refs/heads/master.zip
+
+# Unzip it
+$ unzip ansible-role-postgresql.zip -d /tmp/postgresql_temp
+
+# Creating tar file
+$ cd /tmp/postgresql_temp/*
+$ tar -czf /home/ansibleuser/ansible-role-postgresql.tar.gz .
+
+# Remove it as it is no longer required
+$ rm -rf /tmp/postgresql_temp
+
+# Create the requirements yaml file
+$ cat requirements.yaml
+---
+# From Ansible Galaxy
+- src: geerlingguy.ssh-chroot-jail
+  version: "2.1.2"
+
+# From git-based repo, using https
+- src: https://github.com/geerlingguy/ansible-role-swap.git
+  scm: git
+  version: "2.1.0"
+
+# From git-based repo, using git+
+- src: git+https://github.com/geerlingguy/ansible-role-puppet.git
+  version: "3.2.1"
+
+# From local tar ball
+- src: file:///home/ansibleuser/ansible-role-postgresql.tar.gz
+  name: postgresql
+```
+```
+$ ansible-galaxy role list
+# /home/ansibleuser/my_roles
+- geerlingguy.nginx, 3.3.1
+- geerlingguy.ssh-chroot-jail, 2.1.2
+- ansible-role-swap, 2.1.0
+- ansible-role-puppet, 3.2.1
+- postgresql, (unknown version)
+```
+
