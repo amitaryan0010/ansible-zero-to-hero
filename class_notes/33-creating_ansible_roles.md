@@ -336,4 +336,4 @@ $ tree -F
 
 8 directories, 27 files
 ```
-- Check more info about is Molecule [here](33-What_is_Molecule.md)
+- Check more info about Molecule [here](33-What_is_Molecule.md)
